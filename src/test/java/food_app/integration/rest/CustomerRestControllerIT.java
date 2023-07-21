@@ -1,0 +1,110 @@
+package food_app.integration.rest;
+
+import Food_app.api.dto.CustomerOrderDTO;
+import Food_app.api.dto.RestaurantDTO;
+import Food_app.api.dto.RestaurantMenuDTO;
+import Food_app.domain.FoodApiMeal;
+import Food_app.domain.FoodApiMealDetails;
+import food_app.integration.configuration.RestAssuredIntegrationTestBase;
+import food_app.integration.support.CustomerControllerTestSupport;
+import food_app.integration.support.WiremockTestSupport;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+
+public class CustomerRestControllerIT
+        extends RestAssuredIntegrationTestBase
+        implements CustomerControllerTestSupport, WiremockTestSupport {
+
+    @Test
+    void restaurantTest() {
+        List<RestaurantDTO> restaurantsFirstPage = restaurant(0);
+        List<RestaurantDTO> restaurantsSecondPage = restaurant(1);
+
+        Assertions.assertEquals(5, restaurantsFirstPage.size());
+        Assertions.assertEquals(2, restaurantsSecondPage.size());
+    }
+
+    @Test
+    void restaurantMenuTest() {
+        String restaurant1 = "Flavors of est";
+        String restaurant2 = "Da Grasso";
+        String restaurant3 = "Sushi Master";
+        String restaurant4 = "Polish Pot";
+        String restaurant5 = "La Italiano";
+        String restaurant6 = "Asian Food";
+        String restaurant7 = "World Cuisine";
+        RestaurantMenuDTO restaurantMenuDTO1 = restaurantMenu(restaurant1);
+        RestaurantMenuDTO restaurantMenuDTO2 = restaurantMenu(restaurant2);
+        RestaurantMenuDTO restaurantMenuDTO3 = restaurantMenu(restaurant3);
+        RestaurantMenuDTO restaurantMenuDTO4 = restaurantMenu(restaurant4);
+        RestaurantMenuDTO restaurantMenuDTO5 = restaurantMenu(restaurant5);
+        RestaurantMenuDTO restaurantMenuDTO6 = restaurantMenu(restaurant6);
+        RestaurantMenuDTO restaurantMenuDTO7 = restaurantMenu(restaurant7);
+
+        Assertions.assertEquals(restaurant1, restaurantMenuDTO1.getName());
+        Assertions.assertEquals(restaurant2, restaurantMenuDTO2.getName());
+        Assertions.assertEquals(restaurant3, restaurantMenuDTO3.getName());
+        Assertions.assertEquals(restaurant4, restaurantMenuDTO4.getName());
+        Assertions.assertEquals(restaurant5, restaurantMenuDTO5.getName());
+        Assertions.assertEquals(restaurant6, restaurantMenuDTO6.getName());
+        Assertions.assertEquals(restaurant7, restaurantMenuDTO7.getName());
+
+        Assertions.assertEquals(6, restaurantMenuDTO1.getMeals().size());
+        Assertions.assertEquals(5, restaurantMenuDTO2.getMeals().size());
+        Assertions.assertEquals(5, restaurantMenuDTO3.getMeals().size());
+        Assertions.assertEquals(5, restaurantMenuDTO4.getMeals().size());
+        Assertions.assertEquals(5, restaurantMenuDTO5.getMeals().size());
+        Assertions.assertEquals(5, restaurantMenuDTO6.getMeals().size());
+        Assertions.assertEquals(5, restaurantMenuDTO7.getMeals().size());
+    }
+
+    @Test
+    void customerActiveOrdersTest() {
+        String existingCustomer = "customerJohn";
+        List<CustomerOrderDTO> activeOrders = customerActiveOrders(existingCustomer);
+        Assertions.assertEquals(14, activeOrders.size());
+    }
+
+    @Test
+    void createOrder() {
+        List<CustomerOrderDTO> ordersBefore=customerActiveOrders("customerJohn");
+        customerCreateOrder(Map.of("Lemonade", "1"), "customerJohn", "La Italiano");
+        List<CustomerOrderDTO> ordersAfter=customerActiveOrders("customerJohn");
+        assertEquals(ordersBefore.size()+1,ordersAfter.size());
+    }
+
+    @Test
+    void cancelOrder() {
+        List<CustomerOrderDTO> ordersBefore=customerActiveOrders("customerJohn");
+        String orderNumber=ordersBefore.get(0).getOrderNumber();
+        customerCancelOrder(orderNumber);
+        List<CustomerOrderDTO> ordersAfter=customerActiveOrders("customerJohn");
+        assertEquals(ordersBefore.size()-1,ordersAfter.size());
+        assertFalse(ordersAfter.stream().map(c->c.getOrderNumber()).toList().contains(orderNumber));
+
+    }
+
+    @Test
+    void customerMexicanMonthTest() {
+        stubForMexicanMonthMeals(wireMockServer);
+        List<FoodApiMeal> foodApiMeals = customerMexicanMonth(1);
+        assertEquals(5, foodApiMeals.size());
+    }
+
+    @Test
+    void customerMexicanMonthReceiptTest() {
+        stubForMexicanMonthRecipe(wireMockServer);
+        FoodApiMealDetails foodApiMealDetails = customerMexicanMonthRecipe(1);
+        assertEquals("Pressure cooker refried beans", foodApiMealDetails.getTitle());
+        assertEquals(1, foodApiMealDetails.getId());
+        assertEquals("https://apipics.s3.amazonaws.com/mexican_api/1.jpg", foodApiMealDetails.getImage());
+    }
+
+
+}

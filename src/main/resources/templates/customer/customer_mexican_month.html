@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Food App</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<style>
+     body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+    </style>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+    <span class="navbar-brand">Food App</span>
+    <span class="navbar-brand" th:text="${name}"></span>
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/customer/{name}/restaurants/0 (name=${name})}">Restaurants</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/customer/{name}/orders (name=${name})}">Order History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/customer/{name}/mexicanMonth/0 (name=${name})}">Mexican Month</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1> Mexican Month </h1>
+
+
+    <table class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+        <tr>
+            <th style="vertical-align: middle;">Image</th>
+            <th style="vertical-align: middle;">Title</th>
+            <th style="vertical-align: middle;">Difficulty</th>
+            <th style="vertical-align: middle;">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="foodApiMeal: ${foodApiMeals}">
+            <td style="vertical-align: middle;">
+                <img th:src="${foodApiMeal.image}" alt="Food Image" width="150" height="150">
+            </td>
+            <td style="vertical-align: middle;" th:text="${foodApiMeal.title}"></td>
+            <td style="vertical-align: middle;" th:text="${foodApiMeal.difficulty}"></td>
+            <td style="vertical-align: middle;">
+                <a th:href="@{/customer/{name}/mexicanMonth/receipt/{id}(name=${name},id=${foodApiMeal.id})}" class="btn btn-primary">See receipt</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row justify-content-between">
+        <div class="col-auto">
+            <a th:if="${pageNumber > 0}" th:href="@{/customer/{name}/mexicanMonth/{pageNumber}(name=${name},pageNumber=${pageNumber - 1})}" class="btn btn-primary">Previous Page</a>
+        </div>
+        <div class="col-auto">
+            <a th:if="${!isLastPage}" th:href="@{/customer/{name}/mexicanMonth/{pageNumber}(name=${name},pageNumber=${pageNumber + 1})}" class=" btn btn-primary">Next Page</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

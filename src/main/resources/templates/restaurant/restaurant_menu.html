@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Food App</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<style>
+     body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+    </style>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+    <span class="navbar-brand">Food App</span>
+    <span class="navbar-brand" th:text="${name}"></span>
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/restaurant/{name}/menu(name=${name})}">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/restaurant/{name}/orders (name=${name})}">Order History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/restaurant/{name}/delivery (name=${name})}">Delivery</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+        <h1> Menu </h1>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <a th:href="@{/restaurant/{name}/addMeal(name=${name})}" class="btn btn-primary btn-sm mb-3"> Add Meal</a>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th style="text-align: center; vertical-align: middle;">Photo</th>
+            <th style="text-align: center; vertical-align: middle;">Name</th>
+            <th style="text-align: center; vertical-align: middle;">Category</th>
+            <th style="text-align: center; vertical-align: middle;">Description</th>
+            <th style="text-align: center; vertical-align: middle;">Price</th>
+            <th style="text-align: center; vertical-align: middle;">Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="meal: ${meals}">
+            <td style="text-align: center; vertical-align: middle;">
+                <img th:src="@{${meal.image}}" alt="OH NO" width="150px" height="150px" />
+            </td>
+            <td style="text-align: center; vertical-align: middle;" th:text="${meal.name}"></td>
+            <td style="text-align: center; vertical-align: middle;" th:text="${meal.category}"></td>
+            <td style="text-align: center; vertical-align: middle;" th:text="${meal.description}"></td>
+            <td style="text-align: center; vertical-align: middle;" th:text="${meal.price}"></td>
+            <td style="text-align: center; vertical-align: middle;">
+                <div style="display: flex; justify-content: center;">
+                    <a th:href="@{/restaurant/{name}/updateMeal/{mealName}(name=${name},mealName=${meal.name})}"
+                       class="btn btn-primary" style="margin-right: 5px;">Update</a>
+
+                    <form action="#" th:action="@{/restaurant/{name}/deleteMeal/{mealName}(name=${name},mealName=${meal.name})}" th:method="delete" >
+                        <button type="submit" class="btn btn-danger" style="margin-left: 5px;">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
+</body>
+</html>

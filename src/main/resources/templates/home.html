@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Food App</title>
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		  crossorigin="anonymous">
+	<style>
+		body {
+			background-color: #f8f9fa;
+		}
+
+		.navbar {
+			background-color: #007bff;
+			border-radius: 0;
+		}
+
+		.navbar-brand {
+			color: #000;
+		}
+
+		.navbar-nav .nav-link {
+			color: #000;
+		}
+
+		.navbar-nav .nav-link:hover {
+			color: #000;
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+
+		.container {
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		h2, h3 {
+			color: #000;
+		}
+
+		p {
+			color: #000;
+		}
+
+		 img {
+			max-width: 100%;
+			height: auto;
+			border-radius: 5px;
+			margin-top: 20px;
+		}
+
+		.split-container {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.split-container > div {
+			flex: 1;
+			padding: 20px;
+		}
+
+		.split-container h2 {
+			border-bottom: 2px solid #007bff;
+			padding-bottom: 10px;
+		}
+
+		.split-container h3 {
+			margin-top: 20px;
+		}
+
+		.mexican-food-month {
+			text-align: center;
+			padding: 20px;
+			background-color: #fff;
+			color: #000;
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+	<span class="navbar-brand">Food App</span>
+	<span class="navbar-brand" th:text="${name}"></span>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/login}">Login</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/registration}">Register</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-md-6">
+			<h2>Customer</h2>
+			<p>Here you will find all the available ordering options and features for the application users. You can browse the menu, place orders, and track their status.</p>
+			<p>Explore a wide range of delicious dishes and easily customize your orders according to your preferences.</p>
+		</div>
+		<div class="col-md-6">
+			<h2>Restaurant Owner</h2>
+			<p>Here you will find tools to manage your restaurant. You can add and edit your menu, manage orders, and track customer feedback.</p>
+			<p>Easily update your menu with new dishes, manage inventory, and analyze sales data to make informed decisions.</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="mexican-food-month">
+				<h3>Mexican Food Month</h3>
+				<p>Join us in celebrating the vibrant flavors of Mexico with our month-long Mexican Cuisine Festival. Discover an array of authentic Mexican dishes prepared by skilled chefs.</p>
+				<p>Indulge in mouthwatering tacos, enchiladas, burritos, and more. Experience the richness of Mexican spices, fresh ingredients, and traditional recipes.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
