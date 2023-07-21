@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -32,12 +31,12 @@ public class AuthController {
 
 
     @GetMapping(value = HOME)
-    public String home(Model model) {
+    public String home() {
         return HOME_PAGE;
     }
 
     @GetMapping(value = REGISTRATION)
-    public String registrationForm(Model model) {
+    public String registrationForm() {
         return REGISTRATION_PAGE;
     }
 

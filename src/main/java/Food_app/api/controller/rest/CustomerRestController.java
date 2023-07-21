@@ -85,14 +85,14 @@ public class CustomerRestController {
     }
 
     @GetMapping(value = MEXICAN_MONTH)
-    public ResponseEntity<List<FoodApiMeal>>mexicanMonth( @PathVariable Integer pageNumber) {
+    public ResponseEntity<List<FoodApiMeal>> mexicanMonth(@PathVariable Integer pageNumber) {
         List<FoodApiMeal> meals = foodApiService.getFoodMealPage(pageNumber);
         return ResponseEntity
                 .ok(meals);
     }
 
     @GetMapping(value = MEXICAN_MONTH_RECEIPT)
-    public ResponseEntity<FoodApiMealDetailsDTO> mexicanMonthReceipt( @PathVariable Integer mealId) {
+    public ResponseEntity<FoodApiMealDetailsDTO> mexicanMonthReceipt(@PathVariable Integer mealId) {
         FoodApiMealDetailsDTO meal = foodApiDetailsMapper.map(foodApiService.getFoodApiMealDetails(mealId));
         return ResponseEntity
                 .ok(meal);

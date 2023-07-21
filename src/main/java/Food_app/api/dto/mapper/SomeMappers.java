@@ -8,7 +8,6 @@ import org.mapstruct.Named;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Optional;

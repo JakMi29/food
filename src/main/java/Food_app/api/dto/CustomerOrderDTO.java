@@ -1,14 +1,12 @@
 package Food_app.api.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of="orderNumber")
 public class CustomerOrderDTO {
     String price;
     Boolean complete;

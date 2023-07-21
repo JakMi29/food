@@ -24,7 +24,7 @@ insert into restaurant_owner (name,user_name, surname, phone, email)
 values
 ('James', 'ownerJames','Davis', '+48 987 789 789', 'james@gmail.com'),
 ('Olivia', 'ownerOlivia','Taylor', '+48 547 312 329', 'olivia@gmail.com'),
-('Benjamin', 'ownerBenjamin','Wilson', '+48 987 789 312', 'benjamin@gmail.com'),
+('Benjamin', 'ownerOlivia','Wilson', '+48 987 789 312', 'benjamin@gmail.com'),
 ('Sophia', 'ownerSophia','Anderson', '+48 534 789 679', 'sophia@gmail.com'),
 ('William', 'ownerWilliam','Thomas', '+48 987 299 523', 'william@gmail.com'),
 ('Ava', 'ownerAva','Robinson', '+48 987 765 789', 'ava@gmail.com'),

@@ -131,7 +131,6 @@ public class CustomerController {
     @GetMapping(value = CUSTOMER_RESTAURANT_MENU)
     public String restaurantMenu(@PathVariable String name, @PathVariable String restaurantName, Model model) {
         RestaurantMenuDTO restaurantDTO = restaurantMenuMapper.map(restaurantService.findRestaurantByNameWithMeals(restaurantName));
-        Map<String, String> map = new HashMap<>();
         model.addAttribute("name", name);
         model.addAttribute("restaurantName", restaurantName);
         model.addAttribute("restaurant", restaurantDTO);
@@ -157,7 +156,7 @@ public class CustomerController {
     public String createOrder(
             @PathVariable String name,
             @PathVariable String restaurantName,
-            @RequestParam Map<String, String> mealMap, Model model
+            @RequestParam Map<String, String> mealMap
     ) {
         orderService.createOrder(name, restaurantName, mapMap(mealMap));
         return CUSTOMER_REDIRECT_RESTAURANTS_PAGE.formatted(name);

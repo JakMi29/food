@@ -43,8 +43,9 @@ public class OrderService {
         Order order = orderDAO.findByOrderNumber(orderNumber).orElseThrow(EntityNotFoundException::new);
         System.out.println(OffsetDateTime.now());
         System.out.println(order.getReceivedDateTime());
-        if (!order.getReceivedDateTime().plusMinutes(20).isAfter(OffsetDateTime.now()) && !order.getComplete()){
-        throw new RuntimeException("There is too late to cancel this order");}
+        if (!order.getReceivedDateTime().plusMinutes(20).isAfter(OffsetDateTime.now()) && !order.getComplete()) {
+            throw new RuntimeException("There is too late to cancel this order");
+        }
         orderDAO.cancelOrder(order);
     }
 
