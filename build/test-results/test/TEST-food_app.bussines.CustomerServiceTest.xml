@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="food_app.bussines.CustomerServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-07-22T12:44:03" hostname="VYTAX" time="0.225">
-  <properties/>
-  <testcase name="testFindCustomerByUserName()" classname="food_app.bussines.CustomerServiceTest" time="0.075"/>
-  <testcase name="testFindCustomerByUserNameWithOrders()" classname="food_app.bussines.CustomerServiceTest" time="0.003"/>
-  <testcase name="testCreateCustomer()" classname="food_app.bussines.CustomerServiceTest" time="0.146"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

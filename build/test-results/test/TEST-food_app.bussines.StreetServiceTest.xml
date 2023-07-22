@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="food_app.bussines.StreetServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-07-22T12:44:04" hostname="VYTAX" time="0.021">
-  <properties/>
-  <testcase name="testCreateStreet()" classname="food_app.bussines.StreetServiceTest" time="0.015"/>
-  <testcase name="testFindOrCreateStreetExistingStreet()" classname="food_app.bussines.StreetServiceTest" time="0.004"/>
-  <testcase name="testFindStreet_existingStreet()" classname="food_app.bussines.StreetServiceTest" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
