@@ -74,7 +74,6 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
-
 }
 bootJar {
     archiveFileName = "food_app.${archiveExtension.get()}"
