@@ -1,16 +1,26 @@
 # Food App
 This is the documentation for the food ordering application, which includes a backend, a database, and a basic frontend. The application is implemented 
 using Spring Boot and runs on the Tomcat server.
+# Technology
+Java 17<br>
+Spring Boot 3<br>
+Hibernate<br>
+JUnit 5<br>
+Mockito<br>
+Gradle<br>
+Lombok<br>
+Postgres<br>
+Flyway<br>
+Docker<br>
+Docker Compose<br>
+Test Containers<br>
 # System Requirements
 Before running the application on Docker, make sure your system meets the following requirements:
 Docker: https://www.docker.com/
 # Running the Application on Docker
-1. Clone the Repository
-2. Build Docker Image<br>
-docker build -t food_app .
-3. Run the Container<br>
-docker run --name food_app -p 8190:8190  food_app  
-5. Open the Application in Your Browser 
+1. Clone the Repository<br>
+2. Run the following command to start the project: docker compose up 
+3. Open the Application in Your Browser 
 http://localhost:8190/foodApp
 # Logging into the Application
 On the login page, enter your username and password to log in.<br><br>
@@ -32,6 +42,10 @@ Username: ownerAva <br>
 Password: test <br><br>
 Username: ownerJoseph <br>
 Password: test <br><br>
+
+# Stopping the Project
+To stop the project, you can use the following command: docker compose down
+This will stop and remove all the containers, networks, and volumes defined in the docker-compose.yaml file.
 
 # Swagger API Documentation
 The application provides an interactive Swagger API, which allows browsing and testing the available endpoints. After launching the application, the Swagger API will be accessible at: http://localhost:8190/foodApp/swagger-ui/index.html
