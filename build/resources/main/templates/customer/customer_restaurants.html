@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Food App</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #007bff;
+            border-radius: 0;
+        }
+
+        .navbar-brand {
+            color: #000;
+        }
+
+        .navbar-nav .nav-link {
+            color: #000;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #000;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        table {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            margin-bottom: 20px;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+    <span class="navbar-brand">Food App</span>
+    <span class="navbar-brand" th:text="${name}"></span>
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/customer/{name}/restaurants/0 (name=${name})}">Restaurants</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/customer/{name}/orders (name=${name})}">Order History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/customer/{name}/mexicanMonth/0 (name=${name})}">Mexican Month</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+        <h1> Menu </h1>
+    <p>Explore a variety of restaurants and their menus. Find your favorite dishes and place your order for delivery.
+    Search for restaurants that deliver to your selected street.</p>
+
+    <div class="row justify-content-between mb-3">
+        <div class="col-auto">
+            <form th:action="@{/customer/{name}/restaurantsByStreet (name=${name})}" method="GET">
+                <div class="input-group">
+                    <input type="text" name="streetName" class="form-control" placeholder="Search By Delivery Streets">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-dark">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+        <tr>
+            <th style="vertical-align: middle;">Name</th>
+            <th style="vertical-align: middle;">Category</th>
+            <th style="vertical-align: middle;">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="restaurant: ${restaurants}">
+            <td style="vertical-align: middle;" th:text="${restaurant.name}"></td>
+            <td style="vertical-align: middle;" th:text="${restaurant.foodCategory}"></td>
+            <td style="vertical-align: middle;">
+                <a th:href="@{/customer/{name}/restaurantMenu/{restaurantName}(name=${name}, restaurantName=${restaurant.name})}" class="btn btn-primary">See menu</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row justify-content-between">
+        <div class="col-auto">
+            <a th:if="${pageNumber > 0}" th:href="@{/customer/{name}/restaurants/{pageNumber}(name=${name},pageNumber=${pageNumber - 1})}" class="btn btn-primary">Previous Page</a>
+        </div>
+        <div class="col-auto">
+            <a th:if="${!isLastPage}" th:href="@{/customer/{name}/restaurants/{pageNumber}(name=${name},pageNumber=${pageNumber + 1})}" class=" btn btn-primary">Next Page</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

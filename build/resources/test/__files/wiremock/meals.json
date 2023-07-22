@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "title": "Pressure cooker refried beans",
+    "difficulty": "Easy",
+    "image": "https://apipics.s3.amazonaws.com/mexican_api/1.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Black bean chilli soup with corn dumplings",
+    "difficulty": "Easy",
+    "image": "https://apipics.s3.amazonaws.com/mexican_api/2.jpg"
+  },
+  {
+    "id": "3",
+    "title": "Fishcake tacos",
+    "difficulty": "Easy",
+    "image": "https://apipics.s3.amazonaws.com/mexican_api/3.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Black bean and chicken burritos",
+    "difficulty": "Easy",
+    "image": "https://apipics.s3.amazonaws.com/mexican_api/4.jpg"
+  },
+  {
+    "id": "5",
+    "title": "Pork tacos with sweetcorn and feta",
+    "difficulty": "Easy",
+    "image": "https://apipics.s3.amazonaws.com/mexican_api/5.jpg"
+  }
+]

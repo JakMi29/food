@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="food_app.infrastructure.database.repository.RestaurantRepositoryTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-07-22T12:44:04" hostname="VYTAX" time="0.091">
+  <properties/>
+  <testcase name="testFindAll()" classname="food_app.infrastructure.database.repository.RestaurantRepositoryTest" time="0.072"/>
+  <testcase name="testFindByName()" classname="food_app.infrastructure.database.repository.RestaurantRepositoryTest" time="0.003"/>
+  <testcase name="testCreateRestaurant()" classname="food_app.infrastructure.database.repository.RestaurantRepositoryTest" time="0.002"/>
+  <testcase name="testSaveRestaurant()" classname="food_app.infrastructure.database.repository.RestaurantRepositoryTest" time="0.001"/>
+  <testcase name="testFindByNameWithMeals()" classname="food_app.infrastructure.database.repository.RestaurantRepositoryTest" time="0.003"/>
+  <testcase name="testFindById()" classname="food_app.infrastructure.database.repository.RestaurantRepositoryTest" time="0.004"/>
+  <testcase name="testFindByNameWithOrders()" classname="food_app.infrastructure.database.repository.RestaurantRepositoryTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

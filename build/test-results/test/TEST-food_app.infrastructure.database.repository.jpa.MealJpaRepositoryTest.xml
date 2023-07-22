@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="food_app.infrastructure.database.repository.jpa.MealJpaRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-07-22T12:44:15" hostname="VYTAX" time="0.049">
+  <properties/>
+  <testcase name="thatCarCanBeSavedCorrectly()" classname="food_app.infrastructure.database.repository.jpa.MealJpaRepositoryTest" time="0.049"/>
+  <system-out><![CDATA[[Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [food_app.infrastructure.database.repository.jpa.MealJpaRepositoryTest]: MealJpaRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration Food_app.Main for test class food_app.infrastructure.database.repository.jpa.MealJpaRepositoryTest
+Hibernate: select m1_0.meal_id,m1_0.category,m1_0.description,m1_0.image,m1_0.name,m1_0.price,m1_0.restaurant_id from meal m1_0 where m1_0.meal_id=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="food_app.infrastructure.database.repository.jpa.CustomerJpaRepositoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-07-22T12:44:15" hostname="VYTAX" time="0.329">
+  <properties/>
+  <testcase name="findByUserNameTest()" classname="food_app.infrastructure.database.repository.jpa.CustomerJpaRepositoryTest" time="0.283"/>
+  <testcase name="findByEmailTest()" classname="food_app.infrastructure.database.repository.jpa.CustomerJpaRepositoryTest" time="0.022"/>
+  <testcase name="findByUserNameWithOrdersTest()" classname="food_app.infrastructure.database.repository.jpa.CustomerJpaRepositoryTest" time="0.022"/>
+  <system-out><![CDATA[[Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [food_app.infrastructure.database.repository.jpa.CustomerJpaRepositoryTest]: CustomerJpaRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration Food_app.Main for test class food_app.infrastructure.database.repository.jpa.CustomerJpaRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.0)
+
+[Test worker] INFO  f.i.d.r.j.CustomerJpaRepositoryTest - Starting CustomerJpaRepositoryTest using Java 17.0.7 with PID 1284 (started by jakub in C:\Users\jakub\OneDrive\Pulpit\java\food_app)
+[Test worker] INFO  f.i.d.r.j.CustomerJpaRepositoryTest - No active profile set, falling back to 1 default profile: "default"
+[Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 172 ms. Found 11 JPA repository interfaces.
+[Test worker] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+[Test worker] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+[Test worker] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+[Test worker] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+[Test worker] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 23.0.5
+  API Version: 1.42
+  Operating System: Docker Desktop
+  Total Memory: 7859 MB
+[Test worker] INFO  docker[testcontainers/ryuk:0.3.4] - Creating container for image: testcontainers/ryuk:0.3.4
+[Test worker] INFO  docker[testcontainers/ryuk:0.3.4] - Container testcontainers/ryuk:0.3.4 is starting: 8defd8cc56096a7fe8e94718a2afb37a52712ff63b9371ed1603e2d863d32e35
+[Test worker] INFO  docker[testcontainers/ryuk:0.3.4] - Container testcontainers/ryuk:0.3.4 started in PT1.188267S
+[Test worker] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+[Test worker] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+[Test worker] INFO  o.testcontainers.DockerClientFactory - âś”ď¸Ž Docker server version should be at least 1.6.0
+[Test worker] INFO  docker[postgres:15.0] - Creating container for image: postgres:15.0
+[Test worker] INFO  docker[postgres:15.0] - Container postgres:15.0 is starting: 247aba4ade05ecf8cbdd65e4804a72647c5dbc9aeaeaadd3982798c20a874337
+[Test worker] INFO  docker[postgres:15.0] - Container postgres:15.0 started in PT2.5399261S
+[Test worker] INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 9.5.1 by Redgate
+[Test worker] INFO  o.f.c.i.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#9.5.1
+[Test worker] INFO  o.f.c.i.license.VersionPrinter - 
+[Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2e9f3b74
+[Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[Test worker] INFO  o.f.c.i.d.base.BaseDatabaseType - Database: jdbc:postgresql://localhost:55044/test (PostgreSQL 15.0)
+[Test worker] INFO  o.f.core.internal.command.DbValidate - Successfully validated 12 migrations (execution time 00:00.057s)
+[Test worker] INFO  o.f.c.i.s.JdbcTableSchemaHistory - Creating Schema History table "public"."flyway_schema_history" ...
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": << Empty Schema >>
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.2 - init restaurant owner"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.3 - init street"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.4 - init address"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.5 - init customer"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.6 - init restaurant"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.7 - init order"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.8 - init meal"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.9 - init order meal"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.10 - init restaurant street"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "1.11 - init data"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "3.0 - security tabels"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema "public" to version "3.1 - init users"
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Successfully applied 12 migrations to schema "public", now at version v3.1 (execution time 00:00.628s)
+[Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[Test worker] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.5.Final
+[Test worker] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+[Test worker] INFO  SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+[Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[Test worker] INFO  f.i.d.r.j.CustomerJpaRepositoryTest - Started CustomerJpaRepositoryTest in 10.532 seconds (process running for 24.168)
+Hibernate: select c1_0.customer_id,c1_0.address_id,c1_0.email,c1_0.name,c1_0.phone,c1_0.surname,c1_0.user_id,c1_0.user_name from customer c1_0 where c1_0.user_name=?
+Hibernate: select a1_0.address_id,a1_0.city,a1_0.country,a1_0.house_number,a1_0.postal_code,a1_0.street_id from address a1_0 where a1_0.address_id=?
+Hibernate: select u1_0.user_id,u1_0.active,u1_0.email,u1_0.password,u1_0.role_id,u1_0.user_name from food_app_user u1_0 where u1_0.user_id=?
+Hibernate: select c1_0.customer_id,c1_0.address_id,c1_0.email,c1_0.name,c1_0.phone,c1_0.surname,c1_0.user_id,c1_0.user_name from customer c1_0 where c1_0.email=?
+Hibernate: select a1_0.address_id,a1_0.city,a1_0.country,a1_0.house_number,a1_0.postal_code,a1_0.street_id from address a1_0 where a1_0.address_id=?
+Hibernate: select u1_0.user_id,u1_0.active,u1_0.email,u1_0.password,u1_0.role_id,u1_0.user_name from food_app_user u1_0 where u1_0.user_id=?
+Hibernate: select c1_0.customer_id,c1_0.address_id,c1_0.email,c1_0.name,c1_0.phone,c1_0.surname,c1_0.user_id,c1_0.user_name from customer c1_0 where c1_0.phone=?
+Hibernate: select a1_0.address_id,a1_0.city,a1_0.country,a1_0.house_number,a1_0.postal_code,a1_0.street_id from address a1_0 where a1_0.address_id=?
+Hibernate: select u1_0.user_id,u1_0.active,u1_0.email,u1_0.password,u1_0.role_id,u1_0.user_name from food_app_user u1_0 where u1_0.user_id=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

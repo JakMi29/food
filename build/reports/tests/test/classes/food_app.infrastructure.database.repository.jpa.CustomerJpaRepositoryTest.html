@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - CustomerJpaRepositoryTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>CustomerJpaRepositoryTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/food_app.infrastructure.database.repository.jpa.html">food_app.infrastructure.database.repository.jpa</a> &gt; CustomerJpaRepositoryTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">3</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.327s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">findByEmailTest()</td>
+<td class="success">0.022s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findByUserNameTest()</td>
+<td class="success">0.283s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findByUserNameWithOrdersTest()</td>
+<td class="success">0.022s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>[Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [food_app.infrastructure.database.repository.jpa.CustomerJpaRepositoryTest]: CustomerJpaRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration Food_app.Main for test class food_app.infrastructure.database.repository.jpa.CustomerJpaRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.0)
+
+[Test worker] INFO  f.i.d.r.j.CustomerJpaRepositoryTest - Starting CustomerJpaRepositoryTest using Java 17.0.7 with PID 1284 (started by jakub in C:\Users\jakub\OneDrive\Pulpit\java\food_app)
+[Test worker] INFO  f.i.d.r.j.CustomerJpaRepositoryTest - No active profile set, falling back to 1 default profile: &quot;default&quot;
+[Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 172 ms. Found 11 JPA repository interfaces.
+[Test worker] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+[Test worker] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+[Test worker] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+[Test worker] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+[Test worker] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 23.0.5
+  API Version: 1.42
+  Operating System: Docker Desktop
+  Total Memory: 7859 MB
+[Test worker] INFO  docker[testcontainers/ryuk:0.3.4] - Creating container for image: testcontainers/ryuk:0.3.4
+[Test worker] INFO  docker[testcontainers/ryuk:0.3.4] - Container testcontainers/ryuk:0.3.4 is starting: 8defd8cc56096a7fe8e94718a2afb37a52712ff63b9371ed1603e2d863d32e35
+[Test worker] INFO  docker[testcontainers/ryuk:0.3.4] - Container testcontainers/ryuk:0.3.4 started in PT1.188267S
+[Test worker] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+[Test worker] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+[Test worker] INFO  o.testcontainers.DockerClientFactory - âś”ď¸Ž Docker server version should be at least 1.6.0
+[Test worker] INFO  docker[postgres:15.0] - Creating container for image: postgres:15.0
+[Test worker] INFO  docker[postgres:15.0] - Container postgres:15.0 is starting: 247aba4ade05ecf8cbdd65e4804a72647c5dbc9aeaeaadd3982798c20a874337
+[Test worker] INFO  docker[postgres:15.0] - Container postgres:15.0 started in PT2.5399261S
+[Test worker] INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 9.5.1 by Redgate
+[Test worker] INFO  o.f.c.i.license.VersionPrinter - See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#9.5.1
+[Test worker] INFO  o.f.c.i.license.VersionPrinter - 
+[Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2e9f3b74
+[Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[Test worker] INFO  o.f.c.i.d.base.BaseDatabaseType - Database: jdbc:postgresql://localhost:55044/test (PostgreSQL 15.0)
+[Test worker] INFO  o.f.core.internal.command.DbValidate - Successfully validated 12 migrations (execution time 00:00.057s)
+[Test worker] INFO  o.f.c.i.s.JdbcTableSchemaHistory - Creating Schema History table &quot;public&quot;.&quot;flyway_schema_history&quot; ...
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Current version of schema &quot;public&quot;: &lt;&lt; Empty Schema &gt;&gt;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.2 - init restaurant owner&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.3 - init street&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.4 - init address&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.5 - init customer&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.6 - init restaurant&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.7 - init order&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.8 - init meal&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.9 - init order meal&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.10 - init restaurant street&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;1.11 - init data&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;3.0 - security tabels&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Migrating schema &quot;public&quot; to version &quot;3.1 - init users&quot;
+[Test worker] INFO  o.f.core.internal.command.DbMigrate - Successfully applied 12 migrations to schema &quot;public&quot;, now at version v3.1 (execution time 00:00.628s)
+[Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[Test worker] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.5.Final
+[Test worker] WARN  org.hibernate.orm.deprecation - HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+[Test worker] INFO  SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+[Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[Test worker] INFO  f.i.d.r.j.CustomerJpaRepositoryTest - Started CustomerJpaRepositoryTest in 10.532 seconds (process running for 24.168)
+Hibernate: select c1_0.customer_id,c1_0.address_id,c1_0.email,c1_0.name,c1_0.phone,c1_0.surname,c1_0.user_id,c1_0.user_name from customer c1_0 where c1_0.user_name=?
+Hibernate: select a1_0.address_id,a1_0.city,a1_0.country,a1_0.house_number,a1_0.postal_code,a1_0.street_id from address a1_0 where a1_0.address_id=?
+Hibernate: select u1_0.user_id,u1_0.active,u1_0.email,u1_0.password,u1_0.role_id,u1_0.user_name from food_app_user u1_0 where u1_0.user_id=?
+Hibernate: select c1_0.customer_id,c1_0.address_id,c1_0.email,c1_0.name,c1_0.phone,c1_0.surname,c1_0.user_id,c1_0.user_name from customer c1_0 where c1_0.email=?
+Hibernate: select a1_0.address_id,a1_0.city,a1_0.country,a1_0.house_number,a1_0.postal_code,a1_0.street_id from address a1_0 where a1_0.address_id=?
+Hibernate: select u1_0.user_id,u1_0.active,u1_0.email,u1_0.password,u1_0.role_id,u1_0.user_name from food_app_user u1_0 where u1_0.user_id=?
+Hibernate: select c1_0.customer_id,c1_0.address_id,c1_0.email,c1_0.name,c1_0.phone,c1_0.surname,c1_0.user_id,c1_0.user_name from customer c1_0 where c1_0.phone=?
+Hibernate: select a1_0.address_id,a1_0.city,a1_0.country,a1_0.house_number,a1_0.postal_code,a1_0.street_id from address a1_0 where a1_0.address_id=?
+Hibernate: select u1_0.user_id,u1_0.active,u1_0.email,u1_0.password,u1_0.role_id,u1_0.user_name from food_app_user u1_0 where u1_0.user_id=?
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.4</a> at 22 lip 2023, 14:44:33</p>
+</div>
+</div>
+</body>
+</html>

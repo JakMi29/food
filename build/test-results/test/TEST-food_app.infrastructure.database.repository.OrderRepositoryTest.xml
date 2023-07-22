@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="food_app.infrastructure.database.repository.OrderRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-07-22T12:44:04" hostname="VYTAX" time="0.091">
+  <properties/>
+  <testcase name="testCreateOrder()" classname="food_app.infrastructure.database.repository.OrderRepositoryTest" time="0.075"/>
+  <testcase name="testFindByOrderNumber()" classname="food_app.infrastructure.database.repository.OrderRepositoryTest" time="0.004"/>
+  <testcase name="testFindByOrderNumberWithDetails()" classname="food_app.infrastructure.database.repository.OrderRepositoryTest" time="0.002"/>
+  <testcase name="testFindByRestaurant()" classname="food_app.infrastructure.database.repository.OrderRepositoryTest" time="0.003"/>
+  <testcase name="testCancelOrder()" classname="food_app.infrastructure.database.repository.OrderRepositoryTest" time="0.002"/>
+  <testcase name="testCompleteOrder()" classname="food_app.infrastructure.database.repository.OrderRepositoryTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
