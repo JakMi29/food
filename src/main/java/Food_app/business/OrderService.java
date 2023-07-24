@@ -80,18 +80,16 @@ public class OrderService {
     private Set<OrderMeal> prepareOrderMeals(Map<String, String> mapOfMeals, String restaurantName) {
         return mapOfMeals.entrySet().stream()
                 .filter(entry -> !entry.getValue().equals("0"))
-                .map(
-                        entry -> {
-                            var meal = mealService.findByNameAndRestaurantName(entry.getKey(), restaurantName);
-                            return OrderMeal.builder()
-                                    .meal(meal)
-                                    .quantity(Integer.parseInt(entry.getValue()))
-                                    .price(meal.getPrice().multiply(new BigDecimal(entry.getValue())))
-                                    .build();
-                        }
-
-                )
+                .map(entry->prepareOrder(entry,restaurantName))
                 .collect(Collectors.toSet());
+    }
+    private OrderMeal prepareOrder(Map.Entry<String, String> entry, String restaurantName){
+        var meal = mealService.findByNameAndRestaurantName(entry.getKey(), restaurantName);
+        return OrderMeal.builder()
+                .meal(meal)
+                .quantity(Integer.parseInt(entry.getValue()))
+                .price(meal.getPrice().multiply(new BigDecimal(entry.getValue())))
+                .build();
     }
 
 }

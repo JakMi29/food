@@ -8,8 +8,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "customerId")
-
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

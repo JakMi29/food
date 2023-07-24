@@ -9,8 +9,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "mealId")
-
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

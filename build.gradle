@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
     id "org.openapi.generator" version "${openapiGeneratorVersion}"
+    id 'jacoco'
 }
 
 group = 'food_app'
@@ -72,12 +73,36 @@ dependencyManagement {
 test {
     useJUnitPlatform()
     testLogging {
-        events "passed", "skipped", "failed"
+        events  "failed"
     }
+    finalizedBy jacocoTestReport
 }
 bootJar {
     archiveFileName = "food_app.${archiveExtension.get()}"
 }
+jacoco {
+    toolVersion = "0.8.7"
+}
 
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtmlCustom')
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.100
+            }
+        }
+    }
+}
 
 compileJava.options.encoding = 'UTF-8'

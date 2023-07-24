@@ -28,8 +28,8 @@ public class CustomerRestControllerIT
         List<RestaurantDTO> restaurantsFirstPage = restaurant(0);
         List<RestaurantDTO> restaurantsSecondPage = restaurant(1);
 
-        Assertions.assertEquals(5, restaurantsFirstPage.size());
-        Assertions.assertEquals(2, restaurantsSecondPage.size());
+        Assertions.assertEquals(6, restaurantsFirstPage.size());
+        Assertions.assertEquals(1, restaurantsSecondPage.size());
     }
 
     @Test

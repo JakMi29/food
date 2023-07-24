@@ -79,7 +79,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/customer/{name}/restaurants/0 (name=${name})}">Restaurants</a>
+                <a class="nav-link" th:href="@{/customer/{name}/restaurants/0/6 (name=${name})}">Restaurants</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/customer/{name}/orders (name=${name})}">Order History</a>
@@ -134,10 +134,10 @@
 
     <div class="row justify-content-between">
         <div class="col-auto">
-            <a th:if="${pageNumber > 0}" th:href="@{/customer/{name}/restaurants/{pageNumber}(name=${name},pageNumber=${pageNumber - 1})}" class="btn btn-primary">Previous Page</a>
+            <a th:if="${pageNumber > 0}" th:href="@{/customer/{name}/restaurants/{pageNumber}/6(name=${name},pageNumber=${pageNumber - 1})}" class="btn btn-primary">Previous Page</a>
         </div>
         <div class="col-auto">
-            <a th:if="${!isLastPage}" th:href="@{/customer/{name}/restaurants/{pageNumber}(name=${name},pageNumber=${pageNumber + 1})}" class=" btn btn-primary">Next Page</a>
+            <a th:if="${!isLastPage}" th:href="@{/customer/{name}/restaurants/{pageNumber}/6(name=${name},pageNumber=${pageNumber + 1})}" class=" btn btn-primary">Next Page</a>
         </div>
     </div>
 </div>

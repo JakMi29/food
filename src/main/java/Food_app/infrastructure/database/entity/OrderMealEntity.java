@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = {"orderMealId", "meal"})
-
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

@@ -19,9 +19,9 @@ import java.util.List;
 public class RestaurantRestController {
 
     public static final String API_CUSTOMER = "/api/restaurant";
-    public static final String COMPLETE_ORDER = "/completeOrder/{orderNumber}";
-    public static final String ACTIVE_ORDERS = "/{restaurantName}/activeOrders";
-    public static final String UPDATE_MEAL = "/{restaurantName}/updateMeal/{mealName}";
+    public static final String COMPLETE_ORDER = "/order/{orderNumber}";
+    public static final String ACTIVE_ORDERS = "/{restaurantName}/orders";
+    public static final String UPDATE_MEAL = "/{restaurantName}/meal/{mealName}";
 
 
     private final OrderService orderService;

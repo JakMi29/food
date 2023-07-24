@@ -1,43 +1,21 @@
 package food_app.api.controller;
 
 import Food_app.api.controller.AuthController;
-import Food_app.api.controller.CustomerController;
 import Food_app.api.dto.CreateCustomerDTO;
-import Food_app.api.dto.FoodApiMealDetailsDTO;
-import Food_app.api.dto.OrderDetailsDTO;
-import Food_app.api.dto.mapper.CustomerMapper;
-import Food_app.api.dto.mapper.FoodApiDetailsMapper;
-import Food_app.api.dto.mapper.RestaurantMapper;
-import Food_app.api.dto.mapper.RestaurantMenuMapper;
 import Food_app.business.*;
-import Food_app.domain.FoodApiMeal;
-import Food_app.domain.FoodApiMealDetails;
-import Food_app.infrastructure.database.entity.RestaurantEntity;
-import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
-import Food_app.infrastructure.security.UserRepository;
 import food_app.util.SomeFixtures;
 import lombok.AllArgsConstructor;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.util.LinkedMultiValueMap;
-import org.testcontainers.shaded.org.bouncycastle.cert.crmf.AuthenticatorControl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 

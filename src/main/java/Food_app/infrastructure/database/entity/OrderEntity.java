@@ -9,7 +9,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "orderId")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

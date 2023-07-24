@@ -6,8 +6,6 @@ import lombok.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "restaurantStreetId")
-
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

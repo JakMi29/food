@@ -1,16 +1,16 @@
 package Food_app.api.controller.rest;
 
 import Food_app.api.dto.CustomerOrderDTO;
-import Food_app.api.dto.FoodApiMealDetailsDTO;
 import Food_app.api.dto.RestaurantDTO;
 import Food_app.api.dto.RestaurantMenuDTO;
 import Food_app.api.dto.mapper.CustomerOrderMapper;
-import Food_app.api.dto.mapper.FoodApiDetailsMapper;
 import Food_app.api.dto.mapper.RestaurantMapper;
 import Food_app.api.dto.mapper.RestaurantMenuMapper;
-import Food_app.business.*;
+import Food_app.business.CustomerService;
+import Food_app.business.OrderService;
+import Food_app.business.RestaurantPaginationService;
+import Food_app.business.RestaurantService;
 import Food_app.domain.Customer;
-import Food_app.domain.FoodApiMeal;
 import Food_app.infrastructure.database.entity.RestaurantEntity;
 import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import lombok.AllArgsConstructor;
@@ -27,13 +27,11 @@ import java.util.Map;
 public class CustomerRestController {
 
     public static final String API_CUSTOMER = "/api/customer";
-    public static final String RESTAURANTS = "/restaurants/{pageNumber}";
+    public static final String RESTAURANTS = "/restaurants/{pageNumber}/{pageSize}";
     public static final String CREATE_ORDER = "/{name}/order/{restaurantName}";
     public static final String RESTAURANT_MENU = "/restaurantMenu/{restaurantName}";
-    public static final String CANCEL_ORDER = "/cancelOrder/{orderNumber}";
-    public static final String ACTIVE_ORDERS = "/{name}/activeOrders";
-    public static final String MEXICAN_MONTH = "/mexicanMonth/meals/{pageNumber}";
-    public static final String MEXICAN_MONTH_RECEIPT = "/mexicanMonth/mealDetails/{mealId}";
+    public static final String CANCEL_ORDER = "/order/{orderNumber}";
+    public static final String ACTIVE_ORDERS = "/{name}/orders";
 
     private final RestaurantPaginationService restaurantPaginationService;
     private final RestaurantEntityMapper restaurantEntityMapper;
@@ -41,18 +39,17 @@ public class CustomerRestController {
     private final OrderService orderService;
     private final CustomerService customerService;
     private final RestaurantService restaurantService;
-    private final FoodApiService foodApiService;
-    private final FoodApiDetailsMapper foodApiDetailsMapper;
     private final RestaurantMenuMapper restaurantMenuMapper;
     private final CustomerOrderMapper customerOrderMapper;
 
 
     @GetMapping(value = RESTAURANTS)
     public ResponseEntity<List<RestaurantDTO>> restaurants(
-            @PathVariable Integer pageNumber
+            @PathVariable Integer pageNumber,
+            @PathVariable Integer pageSize
     ) {
 
-        Page<RestaurantEntity> page = restaurantPaginationService.paginate(pageNumber, 5);
+        Page<RestaurantEntity> page = restaurantPaginationService.paginate(pageNumber, pageSize);
         List<RestaurantDTO> restaurants = page.stream()
                 .map(restaurantEntityMapper::map)
                 .map(restaurantMapper::map)
@@ -82,20 +79,6 @@ public class CustomerRestController {
 
         return ResponseEntity
                 .ok(orders);
-    }
-
-    @GetMapping(value = MEXICAN_MONTH)
-    public ResponseEntity<List<FoodApiMeal>> mexicanMonth(@PathVariable Integer pageNumber) {
-        List<FoodApiMeal> meals = foodApiService.getFoodMealPage(pageNumber);
-        return ResponseEntity
-                .ok(meals);
-    }
-
-    @GetMapping(value = MEXICAN_MONTH_RECEIPT)
-    public ResponseEntity<FoodApiMealDetailsDTO> mexicanMonthReceipt(@PathVariable Integer mealId) {
-        FoodApiMealDetailsDTO meal = foodApiDetailsMapper.map(foodApiService.getFoodApiMealDetails(mealId));
-        return ResponseEntity
-                .ok(meal);
     }
 
     @GetMapping(value = RESTAURANT_MENU)

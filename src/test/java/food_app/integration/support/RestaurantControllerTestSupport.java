@@ -16,7 +16,7 @@ public interface RestaurantControllerTestSupport {
 
     default List<RestaurantOrderDTO> restaurantActiveOrders(String restaurantName) {
         return List.of(requestSpecification()
-                .get("/api/restaurant/{restaurantName}/activeOrders", restaurantName)
+                .get("/api/restaurant/{restaurantName}/orders", restaurantName)
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .extract()
@@ -25,7 +25,7 @@ public interface RestaurantControllerTestSupport {
 
     default void restaurantCompleteOrder(String restaurantName) {
         requestSpecification()
-                .patch("/api/restaurant/completeOrder/{orderNumber}", restaurantName)
+                .patch("/api/restaurant/order/{orderNumber}", restaurantName)
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .extract();
@@ -34,7 +34,7 @@ public interface RestaurantControllerTestSupport {
     default void restaurantUpdateMeal(String restaurantName, String mealName, UpdateMealDTO updateMealDTO) {
       requestSpecification()
               .body(updateMealDTO)
-                .put("/api/restaurant/{restaurantName}/updateMeal/{mealName}", restaurantName,mealName)
+                .put("/api/restaurant/{restaurantName}/meal/{mealName}", restaurantName,mealName)
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .extract();

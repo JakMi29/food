@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomerOrderMapperTest {
 
-    @Autowired
+
     private CustomerOrderMapper customerOrderMapper;
 
     @BeforeEach

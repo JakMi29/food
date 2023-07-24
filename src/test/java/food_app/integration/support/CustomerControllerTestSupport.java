@@ -17,7 +17,7 @@ public interface CustomerControllerTestSupport {
 
     default List<RestaurantDTO> restaurant(int pageNumber) {
         return List.of(requestSpecification()
-                .get("/api/customer/restaurants/{pageNumber}", pageNumber)
+                .get("/api/customer/restaurants/{pageNumber}/6", pageNumber)
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .extract()
@@ -35,7 +35,7 @@ public interface CustomerControllerTestSupport {
 
     default String customerActiveOrdersFail(String ame) {
         return requestSpecification()
-                .get("/api/customer/{name}/activeOrders", ame)
+                .get("/api/customer/{name}/orders", ame)
                 .then()
                 .extract()
                 .contentType();
@@ -43,7 +43,7 @@ public interface CustomerControllerTestSupport {
 
     default List<CustomerOrderDTO> customerActiveOrders(String name) {
         return List.of(requestSpecification()
-                .get("/api/customer/{name}/activeOrders", name)
+                .get("/api/customer/{name}/orders", name)
                 .then()
                 .extract()
                 .as(CustomerOrderDTO[].class));
@@ -52,7 +52,7 @@ public interface CustomerControllerTestSupport {
 
     default void customerCancelOrder(String orderNumber) {
         requestSpecification()
-                .delete("/api/customer/cancelOrder/{orderNumber}", orderNumber)
+                .delete("/api/customer/order/{orderNumber}", orderNumber)
                 .then()
                 .extract();
     }
@@ -67,7 +67,7 @@ public interface CustomerControllerTestSupport {
 
     default List<FoodApiMeal> customerMexicanMonth(int pageNumber) {
         return List.of(requestSpecification()
-                .get("/api/customer/mexicanMonth/meals/{pageNumber}", pageNumber)
+                .get("/api/mexicanMonth/meals/{pageNumber}", pageNumber)
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .extract()
@@ -76,7 +76,7 @@ public interface CustomerControllerTestSupport {
 
     default FoodApiMealDetails customerMexicanMonthRecipe(int mealId) {
         return requestSpecification()
-                .get("/api/customer/mexicanMonth/mealDetails/{mealId}", mealId)
+                .get("/api/mexicanMonth/mealDetails/{mealId}", mealId)
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .extract()
