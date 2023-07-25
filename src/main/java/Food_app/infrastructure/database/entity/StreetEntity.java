@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of="name")
 @Entity
 @Table(name = "street")
 public class StreetEntity {
@@ -19,5 +20,4 @@ public class StreetEntity {
 
     @Column(name = "name")
     private String name;
-
 }

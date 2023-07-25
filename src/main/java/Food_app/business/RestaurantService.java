@@ -13,6 +13,7 @@ import Food_app.infrastructure.database.entity.RestaurantEntity;
 import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import Food_app.infrastructure.database.repository.mapper.RestaurantOwnerEntityMapper;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
+@Slf4j
 @Service
 @AllArgsConstructor
 public class RestaurantService {
@@ -42,8 +43,11 @@ public class RestaurantService {
 
     @Transactional
     public Restaurant findRestaurantByRestaurantOwnerEmail(String email) {
-        RestaurantOwner owner = restaurantOwnerDAO.findByEmail(email).orElseThrow();
-        Optional<Restaurant> restaurant = restaurantDAO.findById(owner.getRestaurantOwnerId());
+        Optional<RestaurantOwner> owner = restaurantOwnerDAO.findByEmail(email);
+        if (owner.isEmpty()) {
+            throw new NotFoundException("Could not find restaurantOwner by restaurant owner email: [%s]".formatted(email));
+        }
+        Optional<Restaurant> restaurant = restaurantDAO.findById(owner.get().getRestaurantOwnerId());
         if (restaurant.isEmpty()) {
             throw new NotFoundException("Could not find restaurant by restaurant owner email: [%s]".formatted(email));
         }
@@ -81,10 +85,14 @@ public class RestaurantService {
 
     public void createRestaurant(Restaurant restaurant) {
         restaurantDAO.saveRestaurant(restaurantEntityMapper.map(restaurant));
+        log.info("Successful created restaurant: [%s]".formatted(restaurant.getName()));
     }
 
     public List<Restaurant> findRestaurantsByDeliveryStreet(String streetName) {
         List<RestaurantStreet> restaurants = restaurantStreetService.findRestaurantStreetsByStreetName(streetName);
         return restaurants.stream().map(RestaurantStreet::getRestaurant).toList();
     }
+
+
+
 }

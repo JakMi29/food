@@ -10,10 +10,11 @@ import Food_app.domain.exception.UserAlreadyExist;
 import Food_app.infrastructure.security.RoleEntity;
 import Food_app.infrastructure.security.User;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+@Slf4j
 @Service
 @AllArgsConstructor
 public class RestaurantOwnerService {
@@ -39,15 +40,19 @@ public class RestaurantOwnerService {
                 .restaurantOwner(restaurantOwnerBuilder(createRestaurantOwnerDTO))
                 .build();
         restaurantService.createRestaurant(restaurant);
+        log.info("Successful created new restaurant owner: [%s]".formatted(createRestaurantOwnerDTO.getName()));
     }
 
     @Transactional
     void checkIfCustomerWithUniqueVariablesExist(CreateRestaurantOwnerDTO restaurantOwner) {
         if (restaurantOwnerDAO.findByEmail(restaurantOwner.getEmail()).isPresent()) {
+            log.error("User with this email already exist");
             throw new UserAlreadyExist("User with this email already exist");
         } else if (restaurantOwnerDAO.findByPhone(restaurantOwner.getPhone()).isPresent()) {
+            log.error("User with this phone already exist");
             throw new UserAlreadyExist("User with this phone already exist");
         } else if (restaurantOwnerDAO.findByUserName(restaurantOwner.getUserName()).isPresent()) {
+            log.error("User with this user name already exist");
             throw new UserAlreadyExist("User with this user name already exist");
         }
     }

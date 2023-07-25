@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "restaurantId")
+@EqualsAndHashCode(of = "name")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

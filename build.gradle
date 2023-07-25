@@ -81,9 +81,12 @@ bootJar {
     archiveFileName = "food_app.${archiveExtension.get()}"
 }
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.10"
 }
-
+def coverageExcludes = [
+        '**/*Equals*',
+        '**/*HashCode*',
+]
 jacocoTestReport {
     dependsOn test
     reports {
@@ -92,14 +95,18 @@ jacocoTestReport {
         html.outputLocation = layout.buildDirectory.dir('jacocoHtmlCustom')
     }
 }
-
+tasks.withType(JacocoReport) {
+    classDirectories.from = files(classDirectories.files.collect {
+        fileTree(dir: it, exclude: coverageExcludes)
+    })
+}
 jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
                 counter = 'LINE'
                 value = 'COVEREDRATIO'
-                minimum = 0.100
+                minimum = 0.8
             }
         }
     }

@@ -1,15 +1,10 @@
 package food_app.bussines;
 
-import Food_app.api.dto.CreateCustomerDTO;
-import Food_app.business.CustomerService;
 import Food_app.business.RestaurantStreetService;
 import Food_app.business.StreetService;
-import Food_app.business.dao.CustomerDAO;
-import Food_app.domain.Customer;
 import Food_app.domain.Restaurant;
 import Food_app.domain.RestaurantStreet;
 import Food_app.domain.Street;
-import Food_app.domain.exception.UserAlreadyExist;
 import Food_app.infrastructure.database.repository.RestaurantStreetRepository;
 import food_app.util.SomeFixtures;
 import org.junit.jupiter.api.Assertions;
@@ -18,20 +13,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.testcontainers.shaded.com.google.common.base.Verify;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class RestaurantStreetTest {
+public class RestaurantStreetServiceTest {
 
     @InjectMocks
     private RestaurantStreetService restaurantStreetService;

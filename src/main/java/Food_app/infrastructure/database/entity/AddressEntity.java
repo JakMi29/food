@@ -8,6 +8,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of={"country","city","postalCode","houseNumber","street"})
 @Entity
 @Table(name = "address")
 public class AddressEntity {
@@ -32,5 +33,4 @@ public class AddressEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "street_id")
     private StreetEntity street;
-
 }

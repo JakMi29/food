@@ -4,6 +4,7 @@ import Food_app.domain.FoodApiMeal;
 import Food_app.domain.FoodApiMealDetails;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -12,7 +13,9 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 public class FoodApiService {
+    @Value("${api.host}")
     private static final String API_HOST = "the-mexican-food-db.p.rapidapi.com";
+    @Value("${api.key}")
     private static final String API_KEY = "1161ae7580mshcdc822605bf1e10p1c7a93jsn3749bb484ee0";
 
     public List<FoodApiMeal> getFoodMealPage(int pageNumber) {
@@ -24,7 +27,7 @@ public class FoodApiService {
 
     private List<FoodApiMeal> getFoodApiMealsList() {
         WebClient client = WebClient.builder()
-                .baseUrl("https://the-mexican-food-db.p.rapidapi.com")
+                .baseUrl("https://" + API_HOST)
                 .defaultHeader("X-RapidAPI-Host", API_HOST)
                 .defaultHeader("X-RapidAPI-Key", API_KEY)
                 .build();

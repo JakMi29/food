@@ -9,6 +9,7 @@ import Food_app.domain.OrderMeal;
 import Food_app.domain.Restaurant;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,7 @@ import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@Slf4j
 @Service
 @AllArgsConstructor
 public class OrderService {
@@ -30,6 +31,7 @@ public class OrderService {
     @Transactional
     public void completeOrder(String orderName) {
         orderDAO.completeOrder(orderName);
+        log.info("Successful complete order: [%s]".formatted(orderName));
     }
 
     @Transactional
@@ -41,12 +43,13 @@ public class OrderService {
     @Transactional
     public void cancelOrder(String orderNumber) {
         Order order = orderDAO.findByOrderNumber(orderNumber).orElseThrow(EntityNotFoundException::new);
-        System.out.println(OffsetDateTime.now());
-        System.out.println(order.getReceivedDateTime());
+
         if (!order.getReceivedDateTime().plusMinutes(20).isAfter(OffsetDateTime.now()) && !order.getComplete()) {
+            log.error("Customer tried to cancel order:[%s] after 20 min".formatted(orderNumber));
             throw new RuntimeException("There is too late to cancel this order");
         }
         orderDAO.cancelOrder(order);
+
     }
 
     @Transactional
@@ -54,8 +57,10 @@ public class OrderService {
         Customer customer = customerService.findCustomerByUserName(customerName);
         Restaurant restaurant = restaurantService.findRestaurantByNameWithOrders(restaurantName);
         Set<OrderMeal> orderMeals = prepareOrderMeals(mapOfMeals, restaurantName);
-        if (orderMeals.isEmpty())
+        if (orderMeals.isEmpty()){
+            log.error("Customer: [%s] tried to order empty order".formatted(customer.getName()));
             throw new RuntimeException("Can not order empty order, please select some meal");
+        }
         OffsetDateTime time = OffsetDateTime.now();
         Order order = Order.builder()
                 .restaurant(restaurant)
@@ -68,6 +73,7 @@ public class OrderService {
         orderMeals = orderMeals.stream().map(c -> c.withOrder(order)).collect(Collectors.toSet());
         Order order1 = order.withOrderMeals(orderMeals);
         orderDAO.createOrder(order1);
+        log.info("Successful create order: [%s]".formatted(order.getOrderNumber()));
 
     }
 

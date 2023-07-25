@@ -57,7 +57,6 @@ public class CustomerController {
     public String homePage(Model model) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserEntity user = userRepository.findByUserName(userDetails.getUsername());
-
         Customer customer = customerService.findCustomerByUserName(user.getUserName());
         model.addAttribute("name", customer.getUserName());
         return CUSTOMER_HOME_PAGE;

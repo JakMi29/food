@@ -31,9 +31,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -88,5 +91,38 @@ public class MealServiceTest {
         // then
         assertEquals(expectedMeal, result);
     }
+  /*  @Test
+    public void testAddMeal_NewMeal_AddsSuccessfully() throws IOException {
+        String restaurantName = "Sample Restaurant";
+        CreateMealDTO mealDto = SomeFixtures.someCreateMealDTO();
+
+        Restaurant existingRestaurant = SomeFixtures.someRestaurant();
+        when(restaurantService.findRestaurantByNameWithMeals(restaurantName)).thenReturn(existingRestaurant);
+
+        when(existingRestaurant.getMeals()).thenReturn(Set.of());
+
+        Meal mappedMeal = SomeFixtures.someMeal();
+        when(mealMapper.map(any())).thenReturn(mappedMeal);
+
+        doNothing().when(mealDAO).createMeal(any());
+        mealService.addMeal(mealDto, restaurantName);
+
+        Set<Meal> restaurantMeals = existingRestaurant.getMeals();
+        assertTrue(restaurantMeals.contains(mappedMeal));
+    }*/
+
+    /*@Test
+    public void testAddMeal_ExistingMeal_ThrowsRuntimeException() {
+        String restaurantName = "Sample Restaurant";
+        CreateMealDTO mealDto = new CreateMealDTO("Existing Meal", "Description", 15.99, "meal2.jpg");
+
+        Restaurant existingRestaurant = new Restaurant(1L, restaurantName);
+        when(restaurantService.findRestaurantByNameWithMeals(restaurantName)).thenReturn(existingRestaurant);
+
+        Meal existingMeal = new Meal(2L, "Existing Meal", "Description", 12.99, "meal.jpg", existingRestaurant);
+        when(existingRestaurant.getMeals()).thenReturn(List.of(existingMeal));
+
+        assertThrows(RuntimeException.class, () -> restaurantService.addMeal(mealDto, restaurantName));
+    }*/
 }
 

@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class AddressEntityMapperTest {
 
@@ -59,5 +60,35 @@ public class AddressEntityMapperTest {
         assertEquals(addressEntity.getPostalCode(), address.getPostalCode());
         assertEquals(addressEntity.getHouseNumber(), address.getHouseNumber());
 
+    }
+    @Test
+    void MapAddressEntityWithSomeNullToAddressCorrectly() {
+        AddressEntity addressEntity=AddressEntity.builder().build();
+        Address address=mapper.map(addressEntity);
+        assertNull(address.getStreet());
+        assertNull(address.getCountry());
+        assertNull(address.getAddressId());
+        assertNull(address.getCity());
+        assertNull(address.getPostalCode());
+        assertNull(address.getHouseNumber());
+
+        addressEntity=null;
+        address=mapper.map(addressEntity);
+        assertNull(address);
+    }
+    @Test
+    void MapAddressWithSomeNullToAddressEntityCorrectly() {
+        Address address=Address.builder().build();
+        AddressEntity addressEntity=mapper.map(address);
+        assertNull(addressEntity.getStreet());
+        assertNull(addressEntity.getCountry());
+        assertNull(addressEntity.getAddressId());
+        assertNull(addressEntity.getCity());
+        assertNull(addressEntity.getPostalCode());
+        assertNull(addressEntity.getHouseNumber());
+
+        address=null;
+        addressEntity=mapper.map(address);
+        assertNull(addressEntity);
     }
 }

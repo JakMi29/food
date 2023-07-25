@@ -10,10 +10,14 @@ import Food_app.domain.exception.UserAlreadyExist;
 import Food_app.infrastructure.security.RoleEntity;
 import Food_app.infrastructure.security.User;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
+@Slf4j
 @Service
 @AllArgsConstructor
 
@@ -23,14 +27,22 @@ public class CustomerService {
 
     @Transactional
     public Customer findCustomerByUserName(String userName) {
-        return customerDAO.findByUserName(userName)
-                .orElseThrow(() -> new NotFoundException("Could not found customer by user name: [%s]".formatted(userName)));
+        Optional<Customer> customer = customerDAO.findByUserName(userName);
+        if (customer.isEmpty()) {
+            log.error("Could not found customer by user name: [%s]".formatted(userName));
+            throw new NotFoundException("Could not found customer by user name: [%s]".formatted(userName));
+        }
+        return customer.get();
     }
 
     @Transactional
     public Customer findCustomerByUserNameWithOrders(String userName) {
-        return customerDAO.findByUserNameWithOrders(userName)
-                .orElseThrow(() -> new NotFoundException("Could not found customer by user name: [%s]".formatted(userName)));
+        Optional<Customer>customer= customerDAO.findByUserNameWithOrders(userName);
+        if (customer.isEmpty()) {
+            log.error("Could not found customer by user name: [%s]".formatted(userName));
+            throw new NotFoundException("Could not found customer by user name: [%s]".formatted(userName));
+        }
+        return customer.get();
     }
 
     @Transactional
@@ -49,15 +61,19 @@ public class CustomerService {
                 .build();
 
         customerDAO.createCustomer(newCustomer);
+        log.info("successful created customer [%s]".formatted(newCustomer));
     }
 
     @Transactional
     void checkIfCustomerWithUniqueVariablesExist(CreateCustomerDTO customer) {
         if (customerDAO.findByEmail(customer.getEmail()).isPresent()) {
+            log.error("User with this email already exist");
             throw new UserAlreadyExist("User with this email already exist");
         } else if (customerDAO.findByPhone(customer.getPhone()).isPresent()) {
+            log.error("User with this phone already exist");
             throw new UserAlreadyExist("User with this phone already exist");
         } else if (customerDAO.findByUserName(customer.getUserName()).isPresent()) {
+            log.error("User with this user name already exist");
             throw new UserAlreadyExist("User with this user name already exist");
         }
     }

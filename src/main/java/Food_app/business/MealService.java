@@ -24,8 +24,8 @@ import java.nio.file.StandardCopyOption;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-import static org.hibernate.query.sqm.tree.SqmNode.log;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 @AllArgsConstructor
 public class MealService {
@@ -42,6 +42,7 @@ public class MealService {
         Meal mealToDelete = mealDAO.findByNameAndRestaurant(name, restaurant);
         orderMealService.deleteAllByMeal(mealToDelete);
         mealDAO.deleteById(mealToDelete.getMealId());
+        log.info("Successful deleted meal: [%s]".formatted(name));
     }
 
     @Transactional
@@ -61,7 +62,11 @@ public class MealService {
             mealDAO.createMeal(meal
                     .withRestaurant(restaurant)
                     .withImage(createFile(mealDto.getImage())));
+            log.info("Successful created meal: [%s]".formatted(meal.getName()));
         } else
+            log.error("Can not create meal: [%s] because this meal already exist in this restaurant menu"
+                            .formatted(meal.getName())
+            );
             throw new RuntimeException("this meal already exist in menu");
     }
 
@@ -94,7 +99,7 @@ public class MealService {
                 log.info("File does not exist: " + path);
             }
         } catch (IOException e) {
-            log.info("An error occurred while deleting the file: " + path);
+            log.error("An error occurred while deleting the file: " + path);
         }
 
     }
@@ -114,7 +119,7 @@ public class MealService {
                         .withImage(createFile(mealDto.getImage()))
                         .withRestaurant(restaurant)
         );
-
+        log.info("Successful updated meal: [%s]".formatted(name));
     }
 
     @Transactional
@@ -130,7 +135,7 @@ public class MealService {
                         .withDescription(mealDto.getDescription())
                         .withRestaurant(restaurant)
         );
-
+        log.info("Successful updated meal: [%s]".formatted(name));
     }
 
 }
