@@ -1,4 +1,6 @@
-
+api:
+  host: the-mexican-food-db.p.rapidapi.com
+  key: 1161ae7580mshcdc822605bf1e10p1c7a93jsn3749bb484ee0
 spring:
   security:
     enabled: false
