@@ -4,39 +4,25 @@ import Food_app.api.dto.CreateMealDTO;
 import Food_app.api.dto.mapper.CreateMealMapper;
 import Food_app.business.MealService;
 import Food_app.business.OrderMealService;
-import Food_app.business.PhotoNumberGenerator;
 import Food_app.business.RestaurantService;
 import Food_app.business.dao.MealDAO;
 import Food_app.domain.Meal;
 import Food_app.domain.Restaurant;
+import Food_app.domain.exception.MealAlreadyExist;
 import food_app.util.SomeFixtures;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -45,18 +31,16 @@ public class MealServiceTest {
     private MealService mealService;
     @Mock
     private MealDAO mealDAO;
-
     @Mock
     private CreateMealMapper mealMapper;
-
     @Mock
     private RestaurantService restaurantService;
-
     @Mock
     private OrderMealService orderMealService;
-
     @Mock
     private ResourceLoader resourceLoader;
+    @Mock
+    private Resource resource;
 
     @Test
     void testDeleteByNameAndRestaurantName() {
@@ -91,38 +75,69 @@ public class MealServiceTest {
         // then
         assertEquals(expectedMeal, result);
     }
-  /*  @Test
-    public void testAddMeal_NewMeal_AddsSuccessfully() throws IOException {
+    @Test
+    public void testAddMealNewMealAddsSuccessfully() throws IOException {
         String restaurantName = "Sample Restaurant";
         CreateMealDTO mealDto = SomeFixtures.someCreateMealDTO();
 
         Restaurant existingRestaurant = SomeFixtures.someRestaurant();
         when(restaurantService.findRestaurantByNameWithMeals(restaurantName)).thenReturn(existingRestaurant);
 
-        when(existingRestaurant.getMeals()).thenReturn(Set.of());
-
-        Meal mappedMeal = SomeFixtures.someMeal();
+        Meal mappedMeal = SomeFixtures.someMeal().withName("name");
         when(mealMapper.map(any())).thenReturn(mappedMeal);
 
         doNothing().when(mealDAO).createMeal(any());
         mealService.addMeal(mealDto, restaurantName);
-
-        Set<Meal> restaurantMeals = existingRestaurant.getMeals();
-        assertTrue(restaurantMeals.contains(mappedMeal));
-    }*/
-
-    /*@Test
-    public void testAddMeal_ExistingMeal_ThrowsRuntimeException() {
+    }
+    @Test
+    public void testAddMealNewMealAddsThrowException() throws IOException {
         String restaurantName = "Sample Restaurant";
-        CreateMealDTO mealDto = new CreateMealDTO("Existing Meal", "Description", 15.99, "meal2.jpg");
+        CreateMealDTO mealDto = SomeFixtures.someCreateMealDTO();
 
-        Restaurant existingRestaurant = new Restaurant(1L, restaurantName);
+        Restaurant existingRestaurant = SomeFixtures.someRestaurant();
         when(restaurantService.findRestaurantByNameWithMeals(restaurantName)).thenReturn(existingRestaurant);
 
-        Meal existingMeal = new Meal(2L, "Existing Meal", "Description", 12.99, "meal.jpg", existingRestaurant);
-        when(existingRestaurant.getMeals()).thenReturn(List.of(existingMeal));
+        Meal mappedExistingMeal = SomeFixtures.someMeal().withName("bigos");
+        when(mealMapper.map(any())).thenReturn(mappedExistingMeal);
 
-        assertThrows(RuntimeException.class, () -> restaurantService.addMeal(mealDto, restaurantName));
-    }*/
+        Assertions.assertThrows(MealAlreadyExist.class, () ->  mealService.addMeal(mealDto, restaurantName));
+
+    }
+    @Test
+    public void testDeleteOldPhoto_FileExists_FileDeleted() throws IOException {
+        String path = "/example.jpg";
+        File mockFile = mock(File.class);
+
+        when(resourceLoader.getResource("classpath:static" + path)).thenReturn(resource);
+        when(resource.getFile()).thenReturn(mockFile);
+        when(mockFile.exists()).thenReturn(true);
+        when(mockFile.delete()).thenReturn(true);
+
+        mealService.deleteOldPhoto(path);
+
+        verify(resourceLoader).getResource("classpath:static" + path);
+        verify(resource).getFile();
+        verify(mockFile).exists();
+        verify(mockFile).delete();
+    }
+
+    @Test
+    public void testDeleteOldPhoto_FileDoesNotExist_LogsInfo() throws IOException {
+        String path = "/non_existent.jpg";
+        File mockFile = mock(File.class);
+
+        when(resourceLoader.getResource("classpath:static" + path)).thenReturn(resource);
+        when(resource.getFile()).thenReturn(mockFile);
+        when(mockFile.exists()).thenReturn(false);
+
+        mealService.deleteOldPhoto(path);
+
+        verify(resourceLoader).getResource("classpath:static" + path);
+        verify(resource).getFile();
+        verify(mockFile).exists();
+        verify(mockFile, never()).delete();
+    }
+
+
 }
 

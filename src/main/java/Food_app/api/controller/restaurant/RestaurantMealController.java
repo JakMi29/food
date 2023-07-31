@@ -49,9 +49,7 @@ public class RestaurantMealController {
             @Valid @ModelAttribute("mealDTO") CreateMealDTO mealDTO,
             ModelMap model
     ) {
-
         mealService.addMeal(mealDTO, name);
-
         model.addAttribute("mealName", mealDTO.getName());
         model.addAttribute("name", name);
 

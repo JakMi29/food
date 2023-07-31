@@ -1,19 +1,18 @@
 package food_app.integration.rest;
 
-import Food_app.api.dto.*;
-import Food_app.domain.FoodApiMeal;
-import Food_app.domain.FoodApiMealDetails;
+import Food_app.api.dto.MealDTO;
+import Food_app.api.dto.RestaurantOrderDTO;
+import Food_app.api.dto.UpdateMealDTO;
 import food_app.integration.configuration.RestAssuredIntegrationTestBase;
 import food_app.integration.support.CustomerControllerTestSupport;
 import food_app.integration.support.RestaurantControllerTestSupport;
-import food_app.integration.support.WiremockTestSupport;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class RestaurantRestControllerIT

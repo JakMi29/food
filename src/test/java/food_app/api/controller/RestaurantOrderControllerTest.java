@@ -1,6 +1,5 @@
 package food_app.api.controller;
 
-import Food_app.api.controller.restaurant.RestaurantController;
 import Food_app.api.controller.restaurant.RestaurantOrderController;
 import Food_app.api.dto.OrderDetailsDTO;
 import Food_app.api.dto.RestaurantDTO;

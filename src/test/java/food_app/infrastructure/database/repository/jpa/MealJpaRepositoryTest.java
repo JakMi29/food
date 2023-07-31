@@ -1,9 +1,7 @@
 package food_app.infrastructure.database.repository.jpa;
 
 import Food_app.infrastructure.database.entity.MealEntity;
-import Food_app.infrastructure.database.entity.StreetEntity;
 import Food_app.infrastructure.database.repository.jpa.MealJpaRepository;
-import Food_app.infrastructure.database.repository.jpa.StreetJpaRepository;
 import food_app.integration.configuration.PersistenceContainerTestConfiguration;
 import food_app.util.SomeFixtures;
 import lombok.AllArgsConstructor;
@@ -13,8 +11,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
-
-import java.util.Optional;
 
 @DataJpaTest
 @TestPropertySource(locations = "classpath:application-test.yml")

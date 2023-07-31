@@ -2,7 +2,8 @@ package food_app.api.controller;
 
 import Food_app.api.controller.AuthController;
 import Food_app.api.dto.CreateCustomerDTO;
-import Food_app.business.*;
+import Food_app.business.CustomerService;
+import Food_app.business.RestaurantOwnerService;
 import food_app.util.SomeFixtures;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,10 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = AuthController.class)
 @AutoConfigureMockMvc(addFilters = false)

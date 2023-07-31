@@ -3,7 +3,9 @@ package food_app.api.controller;
 import Food_app.api.controller.customer.CustomerOrderController;
 import Food_app.api.dto.OrderDetailsDTO;
 import Food_app.api.dto.mapper.CustomerMapper;
-import Food_app.business.*;
+import Food_app.api.dto.mapper.OrderDetailsMapper;
+import Food_app.business.CustomerService;
+import Food_app.business.OrderService;
 import food_app.util.SomeFixtures;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Assertions;
@@ -20,6 +22,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -35,6 +38,8 @@ public class CustomerOrderControllerTest {
     private final CustomerService customerService;
     @MockBean
     private final CustomerMapper customerMapper;
+    @MockBean
+    private final OrderDetailsMapper orderDetailsMapper;
     private CustomerOrderController customerOrderController;
     private MockMvc mockMvc;
     @Test
@@ -85,11 +90,12 @@ public class CustomerOrderControllerTest {
         mealMap.put("meal1", "quantity1");
         mealMap.put("meal2", "quantity2");
         parameters.setAll(mealMap);
+        when(orderDetailsMapper.mapWithMeals(any())).thenReturn(SomeFixtures.someOrderDetailsDto());
 
         // when//then
         mockMvc.perform(post(CustomerOrderController.CREATE_ORDER, name, restaurantName).params(parameters))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/customer/" + name + "/restaurants/0/6"));
+                .andExpect(status().isOk())
+                .andExpect(view().name(CustomerOrderController.CUSTOMER_COMPLETE_ORDER_DETAILS));
 
     }
 

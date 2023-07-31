@@ -11,6 +11,7 @@ import Food_app.business.OrderService;
 import Food_app.business.RestaurantPaginationService;
 import Food_app.business.RestaurantService;
 import Food_app.domain.Customer;
+import Food_app.domain.Order;
 import Food_app.infrastructure.database.entity.RestaurantEntity;
 import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import lombok.AllArgsConstructor;
@@ -61,12 +62,14 @@ public class CustomerRestController {
     }
 
     @PostMapping(value = CREATE_ORDER)
-    public void createOrder(
+    public ResponseEntity<CustomerOrderDTO> createOrder(
             @PathVariable String name,
             @PathVariable String restaurantName,
             @RequestBody Map<String, String> mealMap
     ) {
-        orderService.createOrder(name, restaurantName, mealMap);
+        Order order=orderService.createOrder(name, restaurantName, mealMap);
+        return ResponseEntity
+                .ok(customerOrderMapper.map(order));
     }
 
     @GetMapping(value = ACTIVE_ORDERS)

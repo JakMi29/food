@@ -1,7 +1,6 @@
 package Food_app.business;
 
 import Food_app.infrastructure.database.entity.RestaurantEntity;
-import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class RestaurantPaginationService {
     private final RestaurantService restaurantService;
-    private final RestaurantEntityMapper restaurantEntityMapper;
 
     public Page<RestaurantEntity> paginate(int pageNumber, int pageSize) {
 

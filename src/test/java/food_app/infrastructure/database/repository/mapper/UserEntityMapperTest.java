@@ -1,18 +1,15 @@
 package food_app.infrastructure.database.repository.mapper;
 
-import Food_app.api.dto.mapper.StreetMapper;
 import Food_app.infrastructure.database.repository.mapper.UserEntityMapper;
 import Food_app.infrastructure.security.User;
 import Food_app.infrastructure.security.UserEntity;
 import food_app.util.SomeFixtures;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 public class UserEntityMapperTest {
@@ -38,6 +35,10 @@ public class UserEntityMapperTest {
         assertEquals(user.getPassword(), userEntity.getPassword());
         assertEquals(user.getRole().getId(), userEntity.getRole().getId());
         assertEquals(user.getRole().getRole(), userEntity.getRole().getRole());
+
+        user = null;
+        userEntity = userEntityMapper.map(user);
+        assertNull(userEntity);
     }
 
     @Test
@@ -56,5 +57,8 @@ public class UserEntityMapperTest {
         assertEquals(userEntity.getPassword(), user.getPassword());
         assertEquals(userEntity.getRole().getId(), user.getRole().getId());
         assertEquals(userEntity.getRole().getRole(), user.getRole().getRole());
+        userEntity = null;
+        user = userEntityMapper.map(userEntity);
+        assertNull(user);
     }
 }

@@ -1,6 +1,5 @@
 package food_app.api.controller;
 
-import Food_app.api.controller.customer.CustomerController;
 import Food_app.api.controller.customer.CustomerMexicanMonthController;
 import Food_app.api.dto.FoodApiMealDetailsDTO;
 import Food_app.api.dto.mapper.FoodApiDetailsMapper;

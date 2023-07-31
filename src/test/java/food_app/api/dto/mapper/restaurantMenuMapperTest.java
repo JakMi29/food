@@ -1,18 +1,12 @@
 package food_app.api.dto.mapper;
 
-import Food_app.api.dto.CreateMealDTO;
 import Food_app.api.dto.RestaurantMenuDTO;
-import Food_app.api.dto.mapper.*;
-import Food_app.domain.Meal;
+import Food_app.api.dto.mapper.RestaurantMenuMapper;
 import Food_app.domain.Restaurant;
 import food_app.util.SomeFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -37,5 +31,16 @@ public class restaurantMenuMapperTest {
         assertEquals(restaurant.getFoodCategory(),result.getFoodCategory());
         assertEquals(restaurant.getFoodCategory(),result.getFoodCategory());
     }
+    @Test
+    public void testMapWithNulls() {
+
+        Restaurant restaurant = null;
+
+        RestaurantMenuDTO result = restaurantMenuMapper.map(restaurant);
+
+        assertNull(result);
+
+    }
+
 
 }

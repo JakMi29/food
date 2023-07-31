@@ -1,14 +1,11 @@
 package food_app.integration.support;
 
-import Food_app.api.dto.*;
-import Food_app.domain.FoodApiMeal;
-import Food_app.domain.FoodApiMealDetails;
+import Food_app.api.dto.RestaurantOrderDTO;
+import Food_app.api.dto.UpdateMealDTO;
 import io.restassured.specification.RequestSpecification;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Map;
 
 public interface RestaurantControllerTestSupport {
 

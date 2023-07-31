@@ -53,7 +53,7 @@ public class OrderService {
     }
 
     @Transactional
-    public void createOrder(String customerName, String restaurantName, Map<String, String> mapOfMeals) {
+    public Order createOrder(String customerName, String restaurantName, Map<String, String> mapOfMeals) {
         Customer customer = customerService.findCustomerByUserName(customerName);
         Restaurant restaurant = restaurantService.findRestaurantByNameWithOrders(restaurantName);
         Set<OrderMeal> orderMeals = prepareOrderMeals(mapOfMeals, restaurantName);
@@ -75,6 +75,7 @@ public class OrderService {
         orderDAO.createOrder(order1);
         log.info("Successful create order: [%s]".formatted(order.getOrderNumber()));
 
+        return order1;
     }
 
     private BigDecimal calculatePrice(Set<OrderMeal> orderMeals) {

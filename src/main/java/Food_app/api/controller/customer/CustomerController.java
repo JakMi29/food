@@ -1,13 +1,13 @@
 package Food_app.api.controller.customer;
 
-import Food_app.api.dto.*;
-import Food_app.api.dto.mapper.CustomerMapper;
-import Food_app.api.dto.mapper.FoodApiDetailsMapper;
+import Food_app.api.dto.RestaurantDTO;
+import Food_app.api.dto.RestaurantMenuDTO;
 import Food_app.api.dto.mapper.RestaurantMapper;
 import Food_app.api.dto.mapper.RestaurantMenuMapper;
-import Food_app.business.*;
+import Food_app.business.CustomerService;
+import Food_app.business.RestaurantPaginationService;
+import Food_app.business.RestaurantService;
 import Food_app.domain.Customer;
-import Food_app.domain.FoodApiMeal;
 import Food_app.infrastructure.database.entity.RestaurantEntity;
 import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import Food_app.infrastructure.security.UserEntity;
@@ -18,12 +18,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -35,7 +34,7 @@ public class CustomerController {
     public static final String CUSTOMER_RESTAURANTS = "/customer/{name}/restaurants/{pageNumber}/{pageSize}";
     public static final String CUSTOMER_RESTAURANTS_PAGE = "customer/customer_restaurants";
     public static final String CUSTOMER_RESTAURANTS_BY_STREET = "/customer/{name}/restaurantsByStreet";
-    public static final String CUSTOMER_RESTAURANT_MENU = "customer/{name}/restaurantMenu/{restaurantName}";
+    public static final String CUSTOMER_RESTAURANT_MENU = "/customer/{name}/restaurantMenu/{restaurantName}";
 
     public static final String CUSTOMER_RESTAURANTS_BY_STREET_PAGE = "customer/customer_restaurants_by_street";
     public static final String CUSTOMER_RESTAURANT_MENU_PAGE = "customer/customer_restaurant_menu";

@@ -1,7 +1,6 @@
 package Food_app.business;
 
 import Food_app.business.dao.MealDAO;
-import Food_app.business.dao.OrderDAO;
 import Food_app.business.dao.RestaurantDAO;
 import Food_app.business.dao.RestaurantOwnerDAO;
 import Food_app.domain.Meal;
@@ -11,7 +10,6 @@ import Food_app.domain.RestaurantStreet;
 import Food_app.domain.exception.NotFoundException;
 import Food_app.infrastructure.database.entity.RestaurantEntity;
 import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
-import Food_app.infrastructure.database.repository.mapper.RestaurantOwnerEntityMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -28,12 +26,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class RestaurantService {
     private final RestaurantDAO restaurantDAO;
-    private final RestaurantOwnerEntityMapper restaurantOwnerMapper;
     private final RestaurantEntityMapper restaurantEntityMapper;
     private final RestaurantOwnerDAO restaurantOwnerDAO;
     private final RestaurantStreetService restaurantStreetService;
     private final MealDAO mealDAO;
-    private final OrderDAO orderDAO;
 
     @Transactional
     Page<RestaurantEntity> findAll(Pageable pageable) {

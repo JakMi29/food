@@ -1,21 +1,15 @@
 package food_app.api.controller;
 
 import Food_app.api.controller.customer.CustomerController;
-import Food_app.api.dto.FoodApiMealDetailsDTO;
-import Food_app.api.dto.OrderDetailsDTO;
 import Food_app.api.dto.mapper.CustomerMapper;
-import Food_app.api.dto.mapper.FoodApiDetailsMapper;
 import Food_app.api.dto.mapper.RestaurantMapper;
 import Food_app.api.dto.mapper.RestaurantMenuMapper;
 import Food_app.business.*;
-import Food_app.domain.FoodApiMeal;
-import Food_app.domain.FoodApiMealDetails;
 import Food_app.infrastructure.database.entity.RestaurantEntity;
 import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import Food_app.infrastructure.security.UserRepository;
 import food_app.util.SomeFixtures;
 import lombok.AllArgsConstructor;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,16 +19,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.util.LinkedMultiValueMap;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = CustomerController.class)
@@ -93,6 +84,45 @@ public class CustomerControllerTest {
                 .andReturn();
 
         verify(restaurantPaginationService).paginate(pageNumber, 5);
+    }
+    @Test
+    void restaurantsByStreetTest() throws Exception {
+        // Given
+        String name = "name";
+        String streetName="streetName";
+
+        LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
+        Map<String, String> mealMap = new HashMap<>();
+        mealMap.put("streetName",streetName);
+        parameters.setAll(mealMap);
+
+        when(restaurantService.findRestaurantByNameWithMeals(name)).thenReturn(SomeFixtures.someRestaurant());
+
+        mockMvc.perform(get(CustomerController.CUSTOMER_RESTAURANTS_BY_STREET, name).params(parameters))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("name"))
+                .andExpect(model().attributeExists("restaurants"))
+                .andExpect(view().name(CustomerController.CUSTOMER_RESTAURANTS_BY_STREET_PAGE))
+                .andReturn();
+
+    }
+
+    @Test
+    void restaurantMenuTest() throws Exception {
+        // Given
+        String name = "name";
+        String restaurantName="restaurantName";
+
+        when(restaurantMenuMapper.map(any())).thenReturn(SomeFixtures.someRestaurantMenu());
+
+        mockMvc.perform(get(CustomerController.CUSTOMER_RESTAURANT_MENU, name, restaurantName))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("name"))
+                .andExpect(model().attributeExists("restaurantName"))
+                .andExpect(model().attributeExists("restaurant"))
+                .andExpect(view().name(CustomerController.CUSTOMER_RESTAURANT_MENU_PAGE))
+                .andReturn();
+
     }
 
 

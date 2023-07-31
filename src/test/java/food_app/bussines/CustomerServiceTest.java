@@ -5,6 +5,7 @@ import Food_app.business.CustomerService;
 import Food_app.business.StreetService;
 import Food_app.business.dao.CustomerDAO;
 import Food_app.domain.Customer;
+import Food_app.domain.exception.NotFoundException;
 import Food_app.domain.exception.UserAlreadyExist;
 import food_app.util.SomeFixtures;
 import org.junit.jupiter.api.Assertions;
@@ -32,9 +33,15 @@ public class CustomerServiceTest {
     @Test
     public void testFindCustomerByUserName() {
         Customer customer = SomeFixtures.someCustomer();
-        when(customerDAO.findByUserName("john")).thenReturn(Optional.of(customer));
+
+        when(customerDAO.findByUserName("john"))
+                .thenReturn(Optional.of(customer))
+                .thenReturn(Optional.empty());
+
         Customer result = customerService.findCustomerByUserName("john");
         assertEquals(customer, result);
+
+        Assertions.assertThrows(NotFoundException.class, () -> customerService.findCustomerByUserName("customer"));
     }
 
     @Test
@@ -71,10 +78,13 @@ public class CustomerServiceTest {
     public void testFindCustomerByUserNameWithOrders() {
         Customer customer = SomeFixtures.someCustomer();
 
-        when(customerDAO.findByUserNameWithOrders("john")).thenReturn(Optional.of(customer));
+        when(customerDAO.findByUserNameWithOrders("john"))
+                .thenReturn(Optional.of(customer))
+                .thenReturn(Optional.empty());
 
 
         Customer result = customerService.findCustomerByUserNameWithOrders("john");
         assertEquals(customer, result);
+        Assertions.assertThrows(NotFoundException.class, () -> customerService.findCustomerByUserNameWithOrders("customer"));
     }
 }

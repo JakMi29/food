@@ -1,27 +1,21 @@
 package Food_app.api.controller.restaurant;
 
-import Food_app.api.dto.*;
+import Food_app.api.dto.RestaurantDTO;
 import Food_app.api.dto.mapper.RestaurantMapper;
-import Food_app.business.*;
+import Food_app.business.RestaurantOwnerService;
+import Food_app.business.RestaurantService;
 import Food_app.domain.Restaurant;
 import Food_app.domain.RestaurantOwner;
-import Food_app.domain.RestaurantStreet;
-import Food_app.domain.Street;
 import Food_app.infrastructure.database.repository.mapper.UserEntityMapper;
 import Food_app.infrastructure.security.UserEntity;
 import Food_app.infrastructure.security.UserRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Controller

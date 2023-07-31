@@ -1,19 +1,12 @@
 package food_app.infrastructure.database.repository.mapper;
 
-import Food_app.api.dto.mapper.StreetMapper;
-import Food_app.domain.Address;
 import Food_app.domain.Customer;
-import Food_app.infrastructure.database.entity.AddressEntity;
 import Food_app.infrastructure.database.entity.CustomerEntity;
-import Food_app.infrastructure.database.repository.mapper.AddressEntityMapper;
 import Food_app.infrastructure.database.repository.mapper.CustomerEntityMapper;
 import food_app.util.SomeFixtures;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Set;
 

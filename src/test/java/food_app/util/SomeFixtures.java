@@ -169,6 +169,7 @@ public class SomeFixtures {
                 .restaurantOwner(someRestaurantOwnerEntity())
                 .name("Flavors of est")
                 .email("esta@gmail.com")
+                .meals(someMealEntities())
                 .phone("+48 987 789 789")
                 .description("In our restaurant you can eat delicious and cheap. Not only traditional Polish dishes but also delicious Italian pizza.")
                 .build();
@@ -248,6 +249,17 @@ public class SomeFixtures {
                 .price(BigDecimal.ONE)
                 .build());
     }
+    static public Set<MealEntity> someMealEntities() {
+        return Set.of(MealEntity.builder()
+                .mealId(1)
+                .name("bigos")
+                .image("images/image.png")
+                .description("description")
+                .category("category")
+                .price(BigDecimal.ONE)
+                .build());
+    }
+
 
     static public MealEntity someMealEntity() {
         return MealEntity.builder()
@@ -568,6 +580,17 @@ public class SomeFixtures {
         return StreetEntity.builder()
                 .name("street")
                 .streetId(1)
+                .build();
+    }
+
+    public static RestaurantMenuDTO someRestaurantMenu() {
+        return RestaurantMenuDTO.builder()
+                .address("address")
+                .phone("phone")
+                .name("name")
+                .description("description")
+                .foodCategory("foodCategory")
+                .meals(someMealsDTO())
                 .build();
     }
 }

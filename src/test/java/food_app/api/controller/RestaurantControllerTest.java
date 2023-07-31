@@ -1,15 +1,11 @@
 package food_app.api.controller;
 
 import Food_app.api.controller.restaurant.RestaurantController;
-import Food_app.api.controller.restaurant.RestaurantDeliveryController;
-import Food_app.api.controller.restaurant.RestaurantOrderController;
-import Food_app.api.dto.OrderDetailsDTO;
 import Food_app.api.dto.RestaurantDTO;
 import Food_app.api.dto.mapper.RestaurantMapper;
 import Food_app.api.dto.mapper.RestaurantMenuMapper;
 import Food_app.business.*;
 import Food_app.domain.Restaurant;
-import Food_app.domain.RestaurantStreet;
 import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import Food_app.infrastructure.database.repository.mapper.UserEntityMapper;
 import Food_app.infrastructure.security.UserRepository;
@@ -21,8 +17,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.List;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

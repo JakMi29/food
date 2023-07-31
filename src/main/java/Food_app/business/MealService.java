@@ -6,7 +6,9 @@ import Food_app.api.dto.mapper.CreateMealMapper;
 import Food_app.business.dao.MealDAO;
 import Food_app.domain.Meal;
 import Food_app.domain.Restaurant;
+import Food_app.domain.exception.MealAlreadyExist;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -23,8 +25,6 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
-import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -58,16 +58,18 @@ public class MealService {
         Optional<Meal> existingMeal = restaurant.getMeals().stream()
                 .filter(c -> c.getName().equals(meal.getName()))
                 .findFirst();
+
         if (existingMeal.isEmpty()) {
             mealDAO.createMeal(meal
                     .withRestaurant(restaurant)
                     .withImage(createFile(mealDto.getImage())));
             log.info("Successful created meal: [%s]".formatted(meal.getName()));
-        } else
+        } else {
             log.error("Can not create meal: [%s] because this meal already exist in this restaurant menu"
-                            .formatted(meal.getName())
+                    .formatted(meal.getName())
             );
-            throw new RuntimeException("this meal already exist in menu");
+            throw new MealAlreadyExist("this meal already exist in menu");
+        }
     }
 
 

@@ -5,18 +5,17 @@ import Food_app.api.dto.RestaurantDTO;
 import Food_app.api.dto.RestaurantMenuDTO;
 import Food_app.domain.FoodApiMeal;
 import Food_app.domain.FoodApiMealDetails;
-import Food_app.domain.Order;
 import food_app.integration.configuration.RestAssuredIntegrationTestBase;
 import food_app.integration.support.CustomerControllerTestSupport;
 import food_app.integration.support.WiremockTestSupport;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class CustomerRestControllerIT

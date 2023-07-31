@@ -1,21 +1,15 @@
 package food_app.infrastructure.database.repository.mapper;
 
-import Food_app.api.dto.mapper.StreetMapper;
-import Food_app.domain.Address;
 import Food_app.domain.OrderMeal;
-import Food_app.infrastructure.database.entity.AddressEntity;
 import Food_app.infrastructure.database.entity.OrderMealEntity;
-import Food_app.infrastructure.database.repository.mapper.AddressEntityMapper;
 import Food_app.infrastructure.database.repository.mapper.OrderMealMapper;
 import food_app.util.SomeFixtures;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class OrderMealEntityMapperTest {
 
@@ -41,6 +35,13 @@ public class OrderMealEntityMapperTest {
         assertEquals(orderMeal.getMeal().getName(), orderMealEntity.getMeal().getName());
         assertEquals(orderMeal.getMeal().getCategory(), orderMealEntity.getMeal().getCategory());
         assertEquals(orderMeal.getMeal().getImage(), orderMealEntity.getMeal().getImage());
+
+        orderMealEntity = null;
+
+
+        orderMeal = orderMealMapper.map(orderMealEntity);
+
+        assertNull(orderMeal);
     }
 
 }

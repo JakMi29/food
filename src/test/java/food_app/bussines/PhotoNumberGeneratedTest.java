@@ -1,6 +1,5 @@
 package food_app.bussines;
 
-import Food_app.business.OrderNumberGenerator;
 import Food_app.business.PhotoNumberGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

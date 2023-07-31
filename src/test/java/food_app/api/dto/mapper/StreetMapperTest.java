@@ -1,19 +1,18 @@
 package food_app.api.dto.mapper;
 
 import Food_app.api.dto.StreetDTO;
-import Food_app.api.dto.mapper.RestaurantMenuMapper;
 import Food_app.api.dto.mapper.StreetMapper;
 import Food_app.domain.Street;
 import food_app.util.SomeFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class StreetMapperTest {
+public class
+StreetMapperTest {
 
     private StreetMapper streetMapper;
     @BeforeEach
@@ -23,10 +22,12 @@ public class StreetMapperTest {
     @Test
     void testStreetDTOToStreet() {
         StreetDTO streetDTO = SomeFixtures.someStreetDto();
-
         Street street = streetMapper.map(streetDTO);
-
-
         assertEquals(streetDTO.getName(), street.getName());
+        street=streetMapper.map(null);
+        assertNull(street);
+        streetDTO=StreetDTO.builder().build();
+        street=streetMapper.map(streetDTO);
+        assertNull(street.getName());
     }
 }

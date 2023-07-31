@@ -1,21 +1,15 @@
 package food_app.infrastructure.database.repository.mapper;
 
-import Food_app.api.dto.mapper.StreetMapper;
-import Food_app.domain.Restaurant;
 import Food_app.domain.RestaurantOwner;
-import Food_app.infrastructure.database.entity.RestaurantEntity;
 import Food_app.infrastructure.database.entity.RestaurantOwnerEntity;
-import Food_app.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import Food_app.infrastructure.database.repository.mapper.RestaurantOwnerEntityMapper;
 import food_app.util.SomeFixtures;
-import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class RestaurantOwnerEntityMapperTest {
 
@@ -39,6 +33,11 @@ public class RestaurantOwnerEntityMapperTest {
         assertEquals(restaurantOwnerEntity.getEmail(), restaurantOwner.getEmail());
         assertEquals(restaurantOwnerEntity.getSurname(), restaurantOwner.getSurname());
         assertEquals(restaurantOwnerEntity.getUser().getUserName(), restaurantOwner.getUser().getUserName());
+
+        restaurantOwner = null;
+
+       restaurantOwnerEntity = restaurantOwnerEntityMapper.map(restaurantOwner);
+       assertNull(restaurantOwnerEntity);
     }
 
     @Test
@@ -56,5 +55,11 @@ public class RestaurantOwnerEntityMapperTest {
         assertEquals(restaurantOwner.getEmail(), restaurantOwnerEntity.getEmail());
         assertEquals(restaurantOwner.getSurname(), restaurantOwnerEntity.getSurname());
         assertEquals(restaurantOwner.getUser().getUserName(), restaurantOwnerEntity.getUser().getUserName());
+
+        restaurantOwnerEntity = null;
+
+        restaurantOwner = restaurantOwnerEntityMapper.map(restaurantOwnerEntity);
+        assertNull(restaurantOwner);
+
     }
 }

@@ -4,9 +4,9 @@ import Food_app.api.dto.CustomerDTO;
 import Food_app.api.dto.CustomerOrderDTO;
 import Food_app.api.dto.OrderDetailsDTO;
 import Food_app.api.dto.mapper.CustomerMapper;
+import Food_app.api.dto.mapper.OrderDetailsMapper;
 import Food_app.business.CustomerService;
 import Food_app.business.OrderService;
-import Food_app.business.RestaurantPaginationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,13 +24,14 @@ public class CustomerOrderController {
     public static final String CREATE_ORDER = "/customer/{name}/order/{restaurantName}";
     public static final String CANCEL_ORDER = "/customer/{name}/cancelOrder/{orderNumber}";
     public static final String CUSTOMER_ORDER_DETAILS = "/customer/{name}/orderDetails/{orderNumber}";
-    public static final String CUSTOMER_REDIRECT_RESTAURANTS_PAGE = "redirect:/customer/%s/restaurants/0/6";
+    public static final String CUSTOMER_COMPLETE_ORDER_DETAILS = "customer/customer_complete_order_details";
     public static final String CUSTOMER_ORDERS_PAGE = "redirect:/customer/%s/orders";
     public static final String CUSTOMER_ORDER_DETAILS_PAGE = "customer/customer_order_details";
     public static final String CUSTOMER_ORDER_HISTORY_PAGE = "customer/customer_order_history";
     private final OrderService orderService;
     private final CustomerService customerService;
     private final CustomerMapper customerMapper;
+    private final OrderDetailsMapper orderDetailsMapper;
 
     @GetMapping(value = CUSTOMER_ORDER_HISTORY)
     public String ordersPage(@PathVariable String name, Model model) {
@@ -65,11 +66,17 @@ public class CustomerOrderController {
     public String createOrder(
             @PathVariable String name,
             @PathVariable String restaurantName,
-            @RequestParam Map<String, String> mealMap
+            @RequestParam Map<String, String> mealMap,
+            Model model
     ) {
-        orderService.createOrder(name, restaurantName, mapMap(mealMap));
-        return CUSTOMER_REDIRECT_RESTAURANTS_PAGE.formatted(name);
+        OrderDetailsDTO orderDetailsDTO=orderDetailsMapper
+                .mapWithMeals(orderService.createOrder(name, restaurantName, mapMap(mealMap)));
+        System.out.println(orderDetailsDTO);
+        model.addAttribute("order", orderDetailsDTO);
+        model.addAttribute("name", name);
+        return CUSTOMER_COMPLETE_ORDER_DETAILS;
     }
+
     private Map<String, String> mapMap(Map<String, String> map) {
         Map<String, String> newMap = new HashMap<>();
         for (Map.Entry<String, String> entry : map.entrySet()) {

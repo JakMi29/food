@@ -6,18 +6,15 @@ import Food_app.infrastructure.database.repository.StreetRepository;
 import Food_app.infrastructure.database.repository.jpa.StreetJpaRepository;
 import Food_app.infrastructure.database.repository.mapper.StreetEntityMapper;
 import food_app.util.SomeFixtures;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class StreetRepositoryTest {

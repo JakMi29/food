@@ -2,12 +2,14 @@ package food_app.api.dto.mapper;
 
 import Food_app.api.dto.mapper.SomeMappers;
 import Food_app.api.dto.mapper.SomeMappersImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -57,5 +59,19 @@ public class OffsetDataTimeMapperTest {
         BigDecimal result = mapper.StringToBigDecimalMapper(string);
 
         assertEquals(expected, result);
+    }
+    @Test
+    public void listToStringMapper(){
+        SomeMappers mapper = new SomeMappersImpl();
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "Apple");
+        map.put(2, "Banana");
+        map.put(3, "Orange");
+
+        String result = mapper.listToStringMapper(map);
+        String expectedOutput = "1.Apple" + System.lineSeparator() +
+                "2.Banana" + System.lineSeparator() +
+                "3.Orange" + System.lineSeparator();
+        Assertions.assertEquals(expectedOutput, result);
     }
 }
