@@ -33,8 +33,7 @@ public class MealService {
     private final CreateMealMapper mealMapper;
     private final RestaurantService restaurantService;
     private final OrderMealService orderMealService;
-    @Autowired
-    private ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
 
     @Transactional
     public void deleteByNameAndRestaurantName(String name, String restaurantName) {
